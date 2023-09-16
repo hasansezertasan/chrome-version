@@ -137,5 +137,5 @@ pytest = "^7.4.2"
 [tool.poetry.group.docs.dependencies]
 pdoc3 = "0.10.0"
 mkdocs = {extras = ["i18n"], version = "^1.5.2"}
-mkdocs-material = "^8.2.15"
+mkdocs-material = ">=8.2.15,<10.0.0"
 mkdocstrings = {extras = ["python"], version = "^0.23.0"}
