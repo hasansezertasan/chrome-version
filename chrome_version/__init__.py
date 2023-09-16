@@ -1,0 +1,1 @@
+from chrome_version.resolver import get_chrome_version
