@@ -102,7 +102,6 @@ flake8 = "flake8 ."
 isort = "isort ."
 bif = ["black", "isort", "flake8"]
 test = "pytest -v -s"
-makedocs-with-pdoc = "pdoc --html -o docs --force -c show_source_code=False central_dispatch_client"
 makedocs-with-mkdocs = "mkdocs build --clean"
 line-count = "pygount --format=summary"
 clean = "frenchmaid clean"
@@ -135,7 +134,6 @@ pygount = "1.6.1"
 pytest = "^7.4.2"
 
 [tool.poetry.group.docs.dependencies]
-pdoc3 = "0.10.0"
 mkdocs = {extras = ["i18n"], version = "^1.5.2"}
 mkdocs-material = ">=8.2.15,<10.0.0"
 mkdocstrings = {extras = ["python"], version = "^0.23.0"}
