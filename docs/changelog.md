@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Nothing yet.
 
-## [0.3.0]
+## [0.3.0] - 2023-09-30
 
 ### Changed
 
