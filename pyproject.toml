@@ -11,6 +11,7 @@ maintainers = ["hasansezertasan <hasansezertasan@gmail.com>"]
 keywords = ["google chrome version", "chrome", "google", "version"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: MIT License",
   'Environment :: Console',
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Intended Audience :: Developers",
