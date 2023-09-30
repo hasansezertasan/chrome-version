@@ -23,11 +23,7 @@ def extract_version_folder():
     Check if the Chrome folder exists in the x32 or x64 Program Files folders.
     """
     for i in range(2):
-        path = (
-            "C:\\Program Files"
-            + (" (x86)" if i else "")
-            + "\\Google\\Chrome\\Application"
-        )
+        path = "C:\\Program Files" + (" (x86)" if i else "") + "\\Google\\Chrome\\Application"
         if os.path.isdir(path):
             paths = [f.path for f in os.scandir(path) if f.is_dir()]
             for path in paths:
@@ -52,9 +48,7 @@ def get_chrome_version():
             install_path = "/usr/bin/google-chrome"
         elif platform == "darwin":
             # OS X
-            install_path = (
-                "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-            )
+            install_path = "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
         elif platform == "win32":
             # Windows...
             try:
@@ -64,16 +58,12 @@ def get_chrome_version():
                 )
                 output = stream.read()
                 version = extract_version_registry(output)
-            except Exception as ex:
+            except Exception:
                 # Try folder path.
                 version = extract_version_folder()
     except Exception as ex:
         print(ex)
 
-    version = (
-        os.popen(f"{install_path} --version").read().strip("Google Chrome ").strip()
-        if install_path
-        else version
-    )
+    version = os.popen(f"{install_path} --version").read().strip("Google Chrome ").strip() if install_path else version
 
     return version

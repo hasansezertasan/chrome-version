@@ -4,12 +4,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "chrome-version"
-version = "0.2.0"
+version = "0.3.0"
 description = "Detect the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection."
 authors = ["hasansezertasan <hasansezertasan@gmail.com>"]
 maintainers = ["hasansezertasan <hasansezertasan@gmail.com>"]
 keywords = ["google chrome version", "chrome", "google", "version"]
 classifiers = [
+  "Development Status :: 5 - Production/Stable",
   'Environment :: Console',
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Intended Audience :: Developers",
@@ -17,6 +18,8 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -30,7 +33,7 @@ license = "MIT"
 [tool.poetry.urls]
 repository = "https://github.com/hasansezertasan/chrome-version"
 homepage = "https://github.com/hasansezertasan/chrome-version"
-documentation = "https://github.com/hasansezertasan/chrome-version"
+documentation = "https://hasansezertasan.github.io/chrome-version/"
 
 
 
@@ -98,42 +101,13 @@ exclude = '''
 
 [tool.poe.tasks]
 black = "black ."
-flake8 = "flake8 ."
 isort = "isort ."
-bif = ["black", "isort", "flake8"]
-test = "pytest -v -s"
-makedocs-with-mkdocs = "mkdocs build --clean"
-line-count = "pygount --format=summary"
-clean = "frenchmaid clean"
-requirements = "poetry export -f requirements.txt --output pyproject.txt --without-hashes"
+ruff = "ruff ."
+bir = ["black", "isort", "ruff"]
 
 [tool.poetry.scripts]
-chrome-version = { callable = "chrome_version.__main__:app", extras = ["console"] }
+chrome-version = "chrome_version.main:app"
 
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-typer = { version = "*", optional = true }
-
-[tool.poetry.extras]
-console = ["typer"]
-all = ["typer"]
-
-
-[tool.poetry.group.dev.dependencies]
-ipykernel = "^6.25.2"
-isort = "^5.12.0"
-black = { extras = ["jupyter"], version = "^23.9.1" }
-ruff = ">=0.0.287,<0.0.291"
-pre-commit = "^3.4.0"
-poethepoet = "^0.22.1"
-frenchmaid = "^0.2.3"
-pygount = "1.6.1"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^7.4.2"
-
-[tool.poetry.group.docs.dependencies]
-mkdocs = {extras = ["i18n"], version = "^1.5.2"}
-mkdocs-material = ">=8.2.15,<10.0.0"
-mkdocstrings = {extras = ["python"], version = "^0.23.0"}
+python = ">=3.0,<4.0"

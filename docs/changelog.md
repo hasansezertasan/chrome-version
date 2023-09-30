@@ -8,6 +8,23 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Nothing yet.
 
+## [0.3.0]
+
+### Changed
+
+- `README.md`
+- `pyproject.toml`
+- Python Version Support range is changed to `^3.6` from `^3.8`.
+
+### Added
+
+- Simple CLI Tool to get the Chrome version with zero dependencies.
+
+### Removed
+
+- CLI Tool wrapping the module with typer is removed.
+- Optional dependency `typer` for CLI Tool is removed.
+
 ## [0.2.0] - 2023-09-16
 
 ### Added
@@ -45,6 +62,7 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 [semantic versioning]: https://semver.org
 
 <!-- Versions -->
-[unreleased]: https://github.com/hasansezertasan/chrome-version/compare/0.1.0...HEAD
+[unreleased]: https://github.com/hasansezertasan/chrome-version/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/hasansezertasan/chrome-version/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/hasansezertasan/chrome-version/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/hasansezertasan/chrome-version/releases/tag/0.1.0

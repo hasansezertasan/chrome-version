@@ -64,7 +64,7 @@ Then,
 I decided to use it to learn more about:
 
 - Using [Poetry](https://python-poetry.org/) for packaging and dependency management.
-- Using typer for CLI.
+- Using scripts for CLI.
 - Versioning.
 - License management.
 - Documentation.

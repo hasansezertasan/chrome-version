@@ -22,16 +22,8 @@
 
 ## Installation
 
-- To use it as a module:
-
 ``` bash
 pip install chrome-version
-```
-
-- To use it as a CLI:
-
-``` bash
-pip install chrome-version[console]
 ```
 
 ## Usage
@@ -39,9 +31,9 @@ pip install chrome-version[console]
 Module:
 
 ```python
->>> import chrome_version
->>> print(chrome_version.get_chrome_version())
->>> '103.0.5060.114'
+import chrome_version
+print(chrome_version.get_chrome_version())
+# '103.0.5060.114'
 ```
 
 CLI:
@@ -64,7 +56,7 @@ Then,
 I decided to use it to learn more about:
 
 - Using [Poetry](https://python-poetry.org/) for packaging and dependency management.
-- Using typer for CLI.
+- Using scripts for CLI.
 - Versioning.
 - License management.
 - Documentation.
