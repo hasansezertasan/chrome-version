@@ -22,16 +22,8 @@
 
 ## Installation
 
-- To use it as a module:
-
 ``` bash
 pip install chrome-version
-```
-
-- To use it as a CLI:
-
-``` bash
-pip install chrome-version[console]
 ```
 
 ## Usage
