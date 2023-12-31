@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "chrome-version"
-version = "0.3.0"
+version = "0.3.1"
 description = "Detect the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection."
 authors = ["hasansezertasan <hasansezertasan@gmail.com>"]
 maintainers = ["hasansezertasan <hasansezertasan@gmail.com>"]

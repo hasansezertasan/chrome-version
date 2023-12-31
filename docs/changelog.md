@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Nothing yet.
 
+## [0.3.1] - 2023-12-31
+
+### Changed
+
+- `README.md`: Updated `disclaimer` and `installation` section.
+
 ## [0.3.0] - 2023-09-30
 
 ### Changed
