@@ -84,4 +84,6 @@ Now it's kind of a playground for me to learn more...
 
 ## Disclaimer
 
-This module based on [Detect the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection, does not require Selenium.](https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4) gist. I'm not the author of the gist, I just made it into a module and coded a CLI wrapping it. All credits to the author of the gist.
+Based on [chrome-version](https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4) by [Kory Becker](https://github.com/primaryobjects).
+
+This package provides a CLI wrapper for the original project. All credit reserved to the author of the original code.
