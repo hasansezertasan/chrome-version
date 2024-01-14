@@ -36,7 +36,11 @@ repository = "https://github.com/hasansezertasan/chrome-version"
 homepage = "https://github.com/hasansezertasan/chrome-version"
 documentation = "https://hasansezertasan.github.io/chrome-version/"
 
+[tool.poetry.scripts]
+chrome-version = "chrome_version.main:app"
 
+[tool.poetry.dependencies]
+python = ">=3.0,<4.0"
 
 [tool.ruff]
 # Run `ruff linter` command to see all available linters and their descriptions
@@ -59,10 +63,7 @@ ignore = [
   "E402", # module level import not at top of file
   "E712", # comparison to True should be 'if cond is True:' or 'if cond:'
 ]
-exclude = [
-  "alembic",
-  "migrations",
-]
+exclude = ["alembic", "migrations"]
 show-fixes = true
 
 [tool.isort]
@@ -105,10 +106,3 @@ black = "black ."
 isort = "isort ."
 ruff = "ruff ."
 bir = ["black", "isort", "ruff"]
-
-[tool.poetry.scripts]
-chrome-version = "chrome_version.main:app"
-
-
-[tool.poetry.dependencies]
-python = ">=3.0,<4.0"
