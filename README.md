@@ -1,6 +1,5 @@
 # Chrome Version
 
-[![CI](https://github.com/hasansezertasan/chrome-version/actions/workflows/ci.yml/badge.svg)](https://github.com/hasansezertasan/chrome-version/actions?query=event%3Apush+branch%3Amain+workflow%3ACI)
 [![Coverage](https://img.shields.io/codecov/c/github/hasansezertasan/chrome-version)](https://codecov.io/gh/hasansezertasan/chrome-version)
 [![PyPI - Version](https://img.shields.io/pypi/v/chrome-version.svg)](https://pypi.org/project/chrome-version)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/chrome-version.svg)](https://pypi.org/project/chrome-version)
