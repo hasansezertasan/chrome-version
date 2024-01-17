@@ -63,10 +63,6 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 - `README.md`
 - `LICENSE`
 
-## License
-
-`chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
-
 <!-- Links -->
 [keep a changelog]: https://keepachangelog.com/en/1.1.0/
 [semantic versioning]: https://semver.org
