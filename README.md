@@ -79,3 +79,9 @@ Now it's kind of a playground for me to learn more...
 Based on [chrome-version](https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4) by [Kory Becker](https://github.com/primaryobjects).
 
 This package provides a CLI wrapper for the original project. All credit reserved to the author of the original code.
+
+## License
+
+`chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+<!-- Links -->
