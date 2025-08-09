@@ -55,7 +55,7 @@ TL;DR I don't want to copy and paste it again...
 
 At first,
 
-I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][untedected-chromedriver]. I found the [this gist][chrome-version-gist].
+I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][untedected-chromedriver]. I found [this gist][chrome-version-gist].
 
 After using it in several projects, I decided to turn it into a module so I'll be free of copy/paste. It only have one functionality: getting the chrome version.
 
