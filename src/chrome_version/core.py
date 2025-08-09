@@ -4,7 +4,9 @@ The functions in this module provide platform-specific strategies to
 determine the locally installed Google Chrome version.
 """
 
-# ruff: noqa: UP045, PTH112, PTH119, S605, B005
+# Copyright (c) 2023 Hasan Sezer Taşan
+# Licensed under the MIT License
+# ruff: noqa: PTH112, PTH119, S605, B005
 from __future__ import annotations
 
 import os
@@ -22,12 +24,12 @@ def extract_version_registry(output: str) -> Optional[str]:
         Raw text captured from a ``reg query`` command targeting the Google Chrome
         uninstall key.
 
-    Returns
+    Returns:
     -------
     Optional[str]
         Chrome version string (e.g., ``"123.0.6312.86"``) if found; otherwise ``None``.
 
-    Examples
+    Examples:
     --------
     ```python
     extract_version_registry()
@@ -56,12 +58,12 @@ def extract_version_folder() -> Optional[str]:
     Checks both 32-bit and 64-bit ``Program Files`` directories for a Chrome
     ``Application`` folder whose subdirectory name matches a version pattern.
 
-    Returns
+    Returns:
     -------
     Optional[str]
         Chrome version string if a matching directory name is found; otherwise ``None``.
 
-    Examples
+    Examples:
     --------
     ```python
     extract_version_folder()
@@ -98,12 +100,12 @@ def get_chrome_version() -> Optional[str]:
     from the registry; if unavailable, it falls back to parsing the
     installation directory name.
 
-    Returns
+    Returns:
     -------
     Optional[str]
         Chrome version string if detected; otherwise ``None``.
 
-    Examples
+    Examples:
     --------
     ```python
     get_chrome_version()

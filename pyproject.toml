@@ -1,15 +1,13 @@
 [project]
 name = "chrome-version"
 description = "Detect the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection."
-version = "0.3.1"
-authors = [
-    {name = "Hasan Sezer Taşan", email = "hasansezertasan@gmail.com"},
-]
-maintainers = [
-    {name = "Hasan Sezer Taşan", email = "hasansezertasan@gmail.com"},
-]
-license = {text = "MIT"}
 readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Hasan Sezer Taşan", email = "hasansezertasan@gmail.com" }]
+maintainers = [
+  { name = "Hasan Sezer Taşan", email = "hasansezertasan@gmail.com" },
+]
+dynamic = ["version"]
 keywords = [
     "google chrome version",
     "chrome",
@@ -18,22 +16,30 @@ keywords = [
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: MIT License",
     "Environment :: Console",
-    "Topic :: Software Development :: Libraries :: Python Modules",
     "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: 3.0",
+    "Programming Language :: Python :: 3.1",
+    "Programming Language :: Python :: 3.2",
+    "Programming Language :: Python :: 3.3",
+    "Programming Language :: Python :: 3.4",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 requires-python = ">=3.0,<4.0"
 dependencies = []
@@ -49,17 +55,110 @@ source = "https://github.com/hasansezertasan/chrome-version.git"
 
 
 [project.scripts]
-chrome-version = "chrome_version.main:main"
+chrome-version = "chrome_version.cli:main"
 
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+
+[tool.hatch.build]
+hooks.vcs.version-file = "src/chrome_version/_version.py"
+
+
+[tool.hatch.version]
+source = "vcs"
+fallback-version = "0.1.0"
+
+
+[tool.hatch.version.raw-options]
+version_scheme = "only-version"
+local_scheme = "no-local-version"
+
+
+[tool.uv]
+cache-keys = [
+  { file = "pyproject.toml" },
+  { git = { commit = true, tags = true } },
+]
+trusted-publishing = "always"
 
 
 [tool.ruff]
+fix = true
+output-format = "full"
+preview = true
+show-fixes = true
+src = ["src", "tests", "examples"]
 target-version = "py37"
+unsafe-fixes = true
+
+
+[tool.ruff.analyze]
+detect-string-imports = true
+preview = true
+
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+preview = true
 
 
 [tool.ruff.lint]
+fixable = ["ALL"]
+ignore = ["COM812"]
+logger-objects = ["logging_setup.logger"]
+preview = true
 select = ["ALL"]
+
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
+
+
+[tool.ruff.lint.pycodestyle]
+ignore-overlong-task-comments = true
+
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
+[tool.ruff.lint.ruff]
+parenthesize-tuple-in-subscript = true
+
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+
+[tool.vulture]
+exclude = ["*/.venv/*.py"]
+min_confidence = 80
+paths = ["chrome_version"]
+sort_by_size = true
+
+
+[tool.coverage.run]
+source_pkgs = ["chrome_version", "tests"]
+branch = true
+parallel = true
+
+
+[tool.coverage.paths]
+chrome_version = ["src/chrome_version", "*/chrome_version/src/chrome_version"]
+tests = ["tests", "*/chrome_version/tests"]
+
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]

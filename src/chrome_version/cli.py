@@ -1,4 +1,6 @@
 """CLI entrypoint for retrieving the installed Chrome version."""
+# Copyright (c) 2023 Hasan Sezer Taşan
+# Licensed under the MIT License
 # ruff: noqa: T201
 
 from chrome_version.core import get_chrome_version
