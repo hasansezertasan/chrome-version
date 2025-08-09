@@ -87,7 +87,7 @@ def extract_version_folder() -> Optional[str]:
                 match = re.search(pattern, directory_name)
                 if match and match.group():
                     # Found a Chrome version.
-                    return match.group(0)
+                    return match[0]
 
     return None
 
