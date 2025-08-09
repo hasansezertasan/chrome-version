@@ -133,6 +133,7 @@ def get_chrome_version() -> Optional[str]:
     if install_path:
         command = f'"{install_path}" --version'
         output = os.popen(command).read()
-        version = output.strip("Google Chrome ").strip()
+        match = re.search(r"Google Chrome ([\d\.]+)", output)
+        version = match.group(1) if match else None
 
     return version
