@@ -65,6 +65,7 @@ jobs:
       - name: Check Chrome Version
         shell: bash
         run: |
+          uv run python -c "from sys import platform; print(platform)"
           export CHROME_VERSION=$(uv run chrome-version)
           export SETUP_CHROME_VERSION=${{ steps.setup-chrome.outputs.chrome-version }}
           echo "Chrome version from uv run chrome-version: $CHROME_VERSION"
