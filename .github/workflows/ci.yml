@@ -56,9 +56,6 @@ jobs:
       - name: Restore cache
         if: steps.setup-uv.outputs.cache-hit == 'true'
         run: echo "Cache was restored"
-      - name: Let's see the chrome version in the system
-        run: 
-          chrome --version
       - name: Setup Chrome
         id: setup-chrome
         uses: browser-actions/setup-chrome@v2
