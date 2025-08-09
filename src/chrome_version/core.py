@@ -113,7 +113,7 @@ def get_chrome_version() -> Optional[str]:
     version: Optional[str] = None
     install_path: Optional[str] = None
 
-    if platform == "linux" or platform == "linux2":
+    if platform.startswith("linux"):
         # Linux
         install_path = "/usr/bin/google-chrome"
     elif platform == "darwin":
