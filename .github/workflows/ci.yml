@@ -59,6 +59,9 @@ jobs:
       - name: Setup Chrome
         id: setup-chrome
         uses: browser-actions/setup-chrome@v2
+      - name: Let's see where Chrome is installed
+        run: |
+          echo "Chrome is installed at: ${{ steps.setup-chrome.outputs.chrome-path }}"
       - name: Check Chrome Version
         shell: bash
         run: |
