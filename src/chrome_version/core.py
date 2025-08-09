@@ -6,11 +6,13 @@ determine the locally installed Google Chrome version.
 
 # Copyright (c) 2023 Hasan Sezer Taşan
 # Licensed under the MIT License
-# ruff: noqa: PTH112, PTH119, S605, B005
+# ruff: noqa: S404, S603, S605, C901
 from __future__ import annotations
 
 import os
+import pathlib
 import re
+import subprocess
 from sys import platform
 from typing import Optional
 
@@ -38,13 +40,15 @@ def extract_version_registry(output: str) -> Optional[str]:
 
     """
     try:
-        # Use a regular expression to extract the version string after "DisplayVersion    REG_SZ"
+        # Use a regular expression to extract the version string after
+        # "DisplayVersion    REG_SZ"
         match = re.search(r"DisplayVersion\s+REG_SZ\s+([^\r\n]+)", output)
         if match:
             return match.group(1).strip()
-        return None
     except (TypeError, ValueError):
         # Gracefully handle unexpected input types or missing key
+        return None
+    else:
         return None
 
 
@@ -73,12 +77,12 @@ def extract_version_folder() -> Optional[str]:
             + (" (x86)" if program_files_variant_index else "")
             + "\\Google\\Chrome\\Application"
         )
-        if os.path.isdir(path):
+        if pathlib.Path(path).is_dir():
             candidate_paths = [
                 entry.path for entry in os.scandir(path) if entry.is_dir()
             ]
             for candidate_path in candidate_paths:
-                directory_name = os.path.basename(candidate_path)
+                directory_name = pathlib.Path(candidate_path).name
                 pattern = r"\d+\.\d+\.\d+\.\d+"
                 match = re.search(pattern, directory_name)
                 if match and match.group():
@@ -124,9 +128,13 @@ def get_chrome_version() -> Optional[str]:
             "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\"
             "Uninstall\\Google Chrome"
         )
-        command = f'reg query "{query}"'
-        stream = os.popen(command)
-        output = stream.read()
+        command = ["reg", "query", query]
+        try:
+            output = subprocess.check_output(
+                command, stderr=subprocess.STDOUT, text=True
+            )
+        except subprocess.CalledProcessError:
+            output = ""
         version = extract_version_registry(output) or extract_version_folder()
 
     # When calling the binary with spaces in the path (macOS), wrap in quotes
