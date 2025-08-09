@@ -1,0 +1,140 @@
+"""Core utilities for detecting the installed Google Chrome version.
+
+The functions in this module provide platform-specific strategies to
+determine the locally installed Google Chrome version.
+"""
+
+# ruff: noqa: UP045, PTH112, PTH119, S605, B005
+from __future__ import annotations
+
+import os
+import re
+from sys import platform
+from typing import Optional
+
+
+def extract_version_registry(output: str) -> Optional[str]:
+    """Extract Chrome version from a Windows registry query output string.
+
+    Parameters
+    ----------
+    output: str
+        Raw text captured from a ``reg query`` command targeting the Google Chrome
+        uninstall key.
+
+    Returns
+    -------
+    Optional[str]
+        Chrome version string (e.g., ``"123.0.6312.86"``) if found; otherwise ``None``.
+
+    Examples
+    --------
+    ```python
+    extract_version_registry()
+    "123.0.6312.86"
+    ```
+
+    """
+    try:
+        chrome_version = ""
+        # The registry output contains a line beginning with
+        # "DisplayVersion    REG_SZ" followed by the version.
+        for letter in output[output.rindex("DisplayVersion    REG_SZ") + 24 :]:
+            if letter != "\n":
+                chrome_version += letter
+            else:
+                break
+        return chrome_version.strip()
+    except (TypeError, ValueError):
+        # Gracefully handle unexpected input types or missing key
+        return None
+
+
+def extract_version_folder() -> Optional[str]:
+    """Extract Chrome version by inspecting Windows installation folders.
+
+    Checks both 32-bit and 64-bit ``Program Files`` directories for a Chrome
+    ``Application`` folder whose subdirectory name matches a version pattern.
+
+    Returns
+    -------
+    Optional[str]
+        Chrome version string if a matching directory name is found; otherwise ``None``.
+
+    Examples
+    --------
+    ```python
+    extract_version_folder()
+    "123.0.6312.86"
+    ```
+
+    """
+    for program_files_variant_index in range(2):
+        path = (
+            "C:\\Program Files"
+            + (" (x86)" if program_files_variant_index else "")
+            + "\\Google\\Chrome\\Application"
+        )
+        if os.path.isdir(path):
+            candidate_paths = [
+                entry.path for entry in os.scandir(path) if entry.is_dir()
+            ]
+            for candidate_path in candidate_paths:
+                directory_name = os.path.basename(candidate_path)
+                pattern = r"\d+\.\d+\.\d+\.\d+"
+                match = re.search(pattern, directory_name)
+                if match and match.group():
+                    # Found a Chrome version.
+                    return match.group(0)
+
+    return None
+
+
+def get_chrome_version() -> Optional[str]:
+    """Get the installed Google Chrome version for the current platform.
+
+    On Linux and macOS, the function invokes the Chrome binary with the
+    ``--version`` flag. On Windows, it first attempts to read the version
+    from the registry; if unavailable, it falls back to parsing the
+    installation directory name.
+
+    Returns
+    -------
+    Optional[str]
+        Chrome version string if detected; otherwise ``None``.
+
+    Examples
+    --------
+    ```python
+    get_chrome_version()
+    "123.0.6312.86"
+    ```
+    """
+    version: Optional[str] = None
+    install_path: Optional[str] = None
+
+    if platform == "linux" or platform == "linux2":
+        # Linux
+        install_path = "/usr/bin/google-chrome"
+    elif platform == "darwin":
+        # macOS
+        install_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    elif platform == "win32":
+        # Windows
+        # Try registry key first, fall back to folder name parsing
+        query = (
+            "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\"
+            "Uninstall\\Google Chrome"
+        )
+        command = f'reg query "{query}"'
+        stream = os.popen(command)
+        output = stream.read()
+        version = extract_version_registry(output) or extract_version_folder()
+
+    # When calling the binary with spaces in the path (macOS), wrap in quotes
+    if install_path:
+        command = f'"{install_path}" --version'
+        output = os.popen(command).read()
+        version = output.strip("Google Chrome ").strip()
+
+    return version
