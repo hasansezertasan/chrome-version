@@ -8,6 +8,24 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Nothing yet.
 
+## [0.4.0] - 2025-08-09
+
+## :rocket: Features
+
+- ref(project-structure): use src layout, uv, hatch, release-drafter, more generic `.gitignore`, semantic-pull-requests action, etc by @hasansezertasan in (#28)
+
+## :construction_worker: Continuous Integration
+
+- Bump peaceiris/actions-gh-pages from 3 to 4 by @[dependabot[bot]](https://github.com/apps/dependabot) in (#19)
+- Bump actions/setup-python from 4 to 5 by @[dependabot[bot]](https://github.com/apps/dependabot) in (#13)
+- Bump actions/checkout from 3 to 4 by @[dependabot[bot]](https://github.com/apps/dependabot) in (#14)
+
+## :package: Dependencies
+
+- Bump peaceiris/actions-gh-pages from 3 to 4 by @[dependabot[bot]](https://github.com/apps/dependabot) in (#19)
+- Bump actions/setup-python from 4 to 5 by @[dependabot[bot]](https://github.com/apps/dependabot) in (#13)
+- Bump actions/checkout from 3 to 4 by @[dependabot[bot]](https://github.com/apps/dependabot) in (#14)
+
 ## [0.3.1] - 2023-12-31
 
 ### Changed
@@ -68,7 +86,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 [semantic versioning]: https://semver.org
 
 <!-- Versions -->
-[unreleased]: https://github.com/hasansezertasan/chrome-version/compare/0.3.0...HEAD
+[unreleased]: https://github.com/hasansezertasan/chrome-version/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/hasansezertasan/chrome-version/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/hasansezertasan/chrome-version/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/hasansezertasan/chrome-version/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/hasansezertasan/chrome-version/compare/0.1.0...0.2.0
