@@ -128,10 +128,12 @@ def get_chrome_version() -> Optional[str]:
             "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\"
             "Uninstall\\Google Chrome"
         )
-        command = ["reg", "query", query]
+        reg_query_cmd = ["reg", "query", query]
         try:
             output = subprocess.check_output(
-                command, stderr=subprocess.STDOUT, text=True
+                reg_query_cmd,
+                stderr=subprocess.STDOUT,
+                text=True,
             )
         except subprocess.CalledProcessError:
             output = ""
@@ -139,8 +141,8 @@ def get_chrome_version() -> Optional[str]:
 
     # When calling the binary with spaces in the path (macOS), wrap in quotes
     if install_path:
-        command = f'"{install_path}" --version'
-        output = os.popen(command).read()
+        version_cmd = f'"{install_path}" --version'
+        output = os.popen(version_cmd).read()
         match = re.search(r"Google Chrome ([\d\.]+)", output)
         version = match.group(1) if match else None
 

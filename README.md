@@ -16,20 +16,19 @@ Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using
 
 ## Table of Contents
 
-- [Chrome Version](#chrome-version)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Motivation](#motivation)
-  - [Features](#features)
-  - [Author](#author)
-  - [Disclaimer](#disclaimer)
-  - [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Motivation](#motivation)
+- [Features](#features)
+- [Author](#author)
+- [Disclaimer](#disclaimer)
+- [License](#license)
 
 ## Installation
 
 ``` bash
-pip install chrome-version
+uv add chrome-version
 ```
 
 ## Usage
@@ -84,6 +83,58 @@ One other thing is that it's educational: A simple module is a good practice for
 - No external dependencies
 - CLI
 - Module
+
+<!-- xc-heading -->
+## Development
+
+Clone the repository and cd into the project directory:
+
+```sh
+git clone https://github.com/hasansezertasan/hwid
+cd hwid
+```
+
+The commands below can also be executed using the [xc task runner](https://xcfile.dev/), which combines the usage instructions with the actual commands. Simply run `xc`, it will popup an interactive menu with all available tasks.
+
+### `pre-commit`
+
+Run the pre-commit hooks:
+
+```sh
+uvx pre-commit run --all-files --hook-stage manual --show-diff-on-failure
+```
+
+### `checks`
+
+Run all checks to ensure code quality:
+
+```sh
+uvx "validate-pyproject[all]" pyproject.toml
+uvx typos
+uvx vulture src
+uvx ruff check
+uvx taplo lint pyproject.toml
+uvx ruff format
+uvx taplo format pyproject.toml
+uvx mypy src
+uvx mypy --install-types --non-interactive src/chrome_version
+```
+
+### `docs:serve`
+
+Serve the documentation locally:
+
+```sh
+uvx --with-requirements requirements.docs.txt --reinstall mkdocs serve
+```
+
+### `docs:build`
+
+Build the documentation locally:
+
+```sh
+uvx --with-requirements requirements.docs.txt --reinstall mkdocs build
+```
 
 ## Author
 

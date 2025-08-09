@@ -56,6 +56,16 @@ jobs:
       - name: Restore cache
         if: steps.setup-uv.outputs.cache-hit == 'true'
         run: echo "Cache was restored"
+      - name: Run the checks
+        run: |
+          uvx "validate-pyproject[all]" pyproject.toml
+          uvx typos
+          uvx vulture src
+          uvx ruff check
+          uvx taplo lint pyproject.toml
+          uvx ruff format
+          uvx taplo format pyproject.toml
+          uvx mypy src
+          uvx mypy --install-types --non-interactive src/chrome_version
       - name: Run the Command
-        shell: bash
         run: uv run chrome-version
