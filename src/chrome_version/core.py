@@ -38,15 +38,11 @@ def extract_version_registry(output: str) -> Optional[str]:
 
     """
     try:
-        chrome_version = ""
-        # The registry output contains a line beginning with
-        # "DisplayVersion    REG_SZ" followed by the version.
-        for letter in output[output.rindex("DisplayVersion    REG_SZ") + 24 :]:
-            if letter != "\n":
-                chrome_version += letter
-            else:
-                break
-        return chrome_version.strip()
+        # Use a regular expression to extract the version string after "DisplayVersion    REG_SZ"
+        match = re.search(r"DisplayVersion\s+REG_SZ\s+([^\r\n]+)", output)
+        if match:
+            return match.group(1).strip()
+        return None
     except (TypeError, ValueError):
         # Gracefully handle unexpected input types or missing key
         return None
