@@ -55,13 +55,13 @@ TL;DR I don't want to copy and paste it again...
 
 At first,
 
-I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][untedected-chromedriver]. I found the gist below.
+I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][undetected-chromedriver]. I found [this gist][chrome-version-gist].
 
-When I used it in a variaty of projects, I decided to turn it into a module so I'll be free of copy/paste. It only have one functionality: getting the chrome version.
+After using it in several projects, I decided to turn it into a module so I'll be free of copy/paste. It only have one functionality: getting the chrome version.
 
 Then,
 
-I decided to use it to learn more about:
+I decided to use this package to learn more about:
 
 - Using [Poetry](https://python-poetry.org/) for packaging and dependency management.
 - Using scripts for CLI.
@@ -87,12 +87,12 @@ One other thing is that it's educational: A simple module is a good practice for
 
 ## Author
 
-- [Hasan Sezer Tasan](https://www.github.com/hasansezertasan), It's me :wave:
+- [Hasan Sezer Taşan](https://www.github.com/hasansezertasan), It's me :wave:
 - [Kory Becker](https://github.com/primaryobjects), owner of the original script.
 
 ## Disclaimer
 
-Based on [chrome-version](https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4) by [Kory Becker](https://github.com/primaryobjects).
+Based on [chrome-version-gist] by [Kory Becker](https://github.com/primaryobjects).
 
 This package provides a CLI wrapper for the original project. All credit reserved to the author of the original code.
 
@@ -101,4 +101,5 @@ This package provides a CLI wrapper for the original project. All credit reserve
 `chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
 
 <!-- Links -->
-[untedected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver
+[undetected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver
+[chrome-version-gist]: https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4
