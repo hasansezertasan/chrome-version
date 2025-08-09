@@ -63,7 +63,7 @@ jobs:
         shell: bash
         run: |
           export CHROME_VERSION=$(uv run chrome-version)
-          export SETUP_CHROME_VERSION=${{ steps.setup-chrome.outputs.version }}
+          export SETUP_CHROME_VERSION=${{ steps.setup-chrome.outputs.chrome-version }}
           echo "Chrome version from uv run chrome-version: $CHROME_VERSION"
           echo "Chrome version from setup-chrome action: $SETUP_CHROME_VERSION"
           if [ "$CHROME_VERSION" != "$SETUP_CHROME_VERSION" ]; then
