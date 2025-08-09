@@ -1,37 +1,34 @@
-<h1 align="center">
-    <strong>Chrome Version</strong>
-</h1>
-<p align="center">
-    <em>Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection, does not require Selenium.</em>
-</p>
-<p align="center">
-    <a href="https://github.com/hasansezertasan/chrome-version" target="_blank">
-        <img src="https://img.shields.io/github/last-commit/hasansezertasan/chrome-version" alt="Latest Commit">
-    </a>
-        <img src="https://img.shields.io/github/workflow/status/hasansezertasan/chrome-version/Test">
-        <img src="https://img.shields.io/codecov/c/github/hasansezertasan/chrome-version">
-    <br />
-    <a href="https://pypi.org/project/chrome-version" target="_blank">
-        <img src="https://img.shields.io/pypi/v/chrome-version" alt="Package version">
-    </a>
-    <a href="https://pypi.org/project/chrome-version" target="_blank">
-        <img src="https://img.shields.io/pypi/pyversions/chrome-version">
-    </a>
-    <img src="https://img.shields.io/github/license/hasansezertasan/chrome-version">
-</p>
+# Chrome Version
+
+[![Coverage](https://img.shields.io/codecov/c/github/hasansezertasan/chrome-version)](https://codecov.io/gh/hasansezertasan/chrome-version)
+[![PyPI - Version](https://img.shields.io/pypi/v/chrome-version.svg)](https://pypi.org/project/chrome-version)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/chrome-version.svg)](https://pypi.org/project/chrome-version)
+[![License](https://img.shields.io/github/license/hasansezertasan/chrome-version.svg)](https://github.com/hasansezertasan/chrome-version/blob/main/LICENSE)
+[![Latest Commit](https://img.shields.io/github/last-commit/hasansezertasan/chrome-version)](https://github.com/hasansezertasan/chrome-version)
+
+[![Downloads](https://pepy.tech/badge/chrome-version)](https://pepy.tech/project/chrome-version)
+[![Downloads/Month](https://pepy.tech/badge/chrome-version/month)](https://pepy.tech/project/chrome-version)
+[![Downloads/Week](https://pepy.tech/badge/chrome-version/week)](https://pepy.tech/project/chrome-version)
+
+Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection, does not require Selenium.
+
+---
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Motivation](#motivation)
+- [Features](#features)
+- [Author](#author)
+- [Disclaimer](#disclaimer)
+- [License](#license)
 
 ## Installation
 
-- To use it as a module:
-
 ``` bash
-pip install chrome-version
-```
-
-- To use it as a CLI:
-
-``` bash
-pip install chrome-version[console]
+uv add chrome-version
 ```
 
 ## Usage
@@ -39,9 +36,9 @@ pip install chrome-version[console]
 Module:
 
 ```python
->>> import chrome_version
->>> print(chrome_version.get_chrome_version())
->>> '103.0.5060.114'
+import chrome_version
+print(chrome_version.get_chrome_version())
+# '103.0.5060.114'
 ```
 
 CLI:
@@ -51,17 +48,19 @@ chrome-version
 103.0.5060.114
 ```
 
-## Why?
+## Motivation
+
+TL;DR I don't want to copy and paste it again...
 
 At first,
 
-I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver). I found the gist below.
+I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][undetected-chromedriver]. I found [this gist][chrome-version-gist].
 
-When I used it in a variaty of projects, I decided to turn it into a module so I'll be free of copy/paste. It only have one functionality: getting the chrome version.
+After using it in several projects, I decided to turn it into a module so I'll be free of copy/paste. It only have one functionality: getting the chrome version.
 
 Then,
 
-I decided to use it to learn more about:
+I decided to use this package to learn more about:
 
 - Using [Poetry](https://python-poetry.org/) for packaging and dependency management.
 - Using scripts for CLI.
@@ -76,12 +75,82 @@ Finally,
 
 Now it's kind of a playground for me to learn more...
 
-## Motivation
+One other thing is that it's educational: A simple module is a good practice for me to learn how to build modules and publish them on PyPI and show others how easy it is.
 
-- It might be useful for someone.
-- It's easier to pip install a module than copy/paste a gist.
-- Educational Purposes: A simple module is a good practice for me to learn how to build modules and publish them on PyPI and show others how easy it is.
+## Features
+
+- Cross-platform
+- No external dependencies
+- CLI
+- Module
+
+<!-- xc-heading -->
+## Development
+
+Clone the repository and cd into the project directory:
+
+```sh
+git clone https://github.com/hasansezertasan/hwid
+cd hwid
+```
+
+The commands below can also be executed using the [xc task runner](https://xcfile.dev/), which combines the usage instructions with the actual commands. Simply run `xc`, it will popup an interactive menu with all available tasks.
+
+### `pre-commit`
+
+Run the pre-commit hooks:
+
+```sh
+uvx pre-commit run --all-files --hook-stage manual --show-diff-on-failure
+```
+
+### `checks`
+
+Run all checks to ensure code quality:
+
+```sh
+uvx "validate-pyproject[all]" pyproject.toml
+uvx typos
+uvx vulture src
+uvx ruff check
+uvx taplo lint pyproject.toml
+uvx ruff format
+uvx taplo format pyproject.toml
+uvx mypy src
+uvx mypy --install-types --non-interactive src/chrome_version
+```
+
+### `docs:serve`
+
+Serve the documentation locally:
+
+```sh
+uvx --with-requirements requirements.docs.txt --reinstall mkdocs serve
+```
+
+### `docs:build`
+
+Build the documentation locally:
+
+```sh
+uvx --with-requirements requirements.docs.txt --reinstall mkdocs build
+```
+
+## Author
+
+- [Hasan Sezer Taşan](https://www.github.com/hasansezertasan), It's me :wave:
+- [Kory Becker](https://github.com/primaryobjects), owner of the original script.
 
 ## Disclaimer
 
-This module based on [Detect the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection, does not require Selenium.](https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4) gist. I'm not the author of the gist, I just made it into a module and coded a CLI wrapping it. All credits to the author of the gist.
+Based on [chrome-version-gist] by [Kory Becker](https://github.com/primaryobjects).
+
+This package provides a CLI wrapper for the original project. All credit reserved to the author of the original code.
+
+## License
+
+`chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+<!-- Links -->
+[undetected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver
+[chrome-version-gist]: https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4

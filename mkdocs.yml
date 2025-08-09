@@ -1,9 +1,9 @@
+---
 site_name: Chrome Version
 site_description: Chrome Version
 site_url: https://hasansezertasan.github.io/chrome-version/
 repo_name: hasansezertasan/chrome-version
 repo_url: https://github.com/hasansezertasan/chrome-version
-
 theme:
   name: material
   language: en
@@ -28,7 +28,6 @@ theme:
     - search.highlight
     - content.tabs.link
     - content.code.annotate
-
 plugins:
   - search
   - mkdocstrings
@@ -51,12 +50,11 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - attr_list
   - tables
   - def_list
-
 nav:
   - Home: index.md
   - API Reference: reference.md

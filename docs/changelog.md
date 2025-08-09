@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Nothing yet.
 
+## [0.3.1] - 2023-12-31
+
+### Changed
+
+- `README.md`: Updated `disclaimer` and `installation` section.
+
 ## [0.3.0] - 2023-09-30
 
 ### Changed
@@ -63,6 +69,7 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 <!-- Versions -->
 [unreleased]: https://github.com/hasansezertasan/chrome-version/compare/0.3.0...HEAD
+[0.3.1]: https://github.com/hasansezertasan/chrome-version/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/hasansezertasan/chrome-version/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/hasansezertasan/chrome-version/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/hasansezertasan/chrome-version/releases/tag/0.1.0
