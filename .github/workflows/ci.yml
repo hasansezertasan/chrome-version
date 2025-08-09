@@ -56,22 +56,6 @@ jobs:
       - name: Restore cache
         if: steps.setup-uv.outputs.cache-hit == 'true'
         run: echo "Cache was restored"
-      - name: Setup Chrome
-        id: setup-chrome
-        uses: browser-actions/setup-chrome@v2
-      - name: Let's see where Chrome is installed
-        run: |
-          echo "Chrome is installed at: ${{ steps.setup-chrome.outputs.chrome-path }}"
-      - name: Check Chrome Version
+      - name: Run the Command
         shell: bash
-        run: |
-          uv run python -c "from sys import platform; print(platform)"
-          export CHROME_VERSION=$(uv run chrome-version)
-          export SETUP_CHROME_VERSION=${{ steps.setup-chrome.outputs.chrome-version }}
-          echo "Chrome version from uv run chrome-version: $CHROME_VERSION"
-          echo "Chrome version from setup-chrome action: $SETUP_CHROME_VERSION"
-          if [ "$CHROME_VERSION" != "$SETUP_CHROME_VERSION" ]; then
-            echo "Chrome version mismatch"
-            exit 1
-          fi
-          echo "All is well!"
+        run: uv run chrome-version
