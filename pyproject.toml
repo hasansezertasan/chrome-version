@@ -141,7 +141,7 @@ max-complexity = 5
 [tool.vulture]
 exclude = ["*/.venv/*.py"]
 min_confidence = 80
-paths = ["chrome_version"]
+paths = ["src/chrome_version"]
 sort_by_size = true
 
 

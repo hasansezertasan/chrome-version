@@ -55,7 +55,7 @@ TL;DR I don't want to copy and paste it again...
 
 At first,
 
-I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][untedected-chromedriver]. I found [this gist][chrome-version-gist].
+I needed to get the Chrome version for a project I was working on, which was using [Undetected Chromedriver][undetected-chromedriver]. I found [this gist][chrome-version-gist].
 
 After using it in several projects, I decided to turn it into a module so I'll be free of copy/paste. It only have one functionality: getting the chrome version.
 
@@ -101,5 +101,5 @@ This package provides a CLI wrapper for the original project. All credit reserve
 `chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
 
 <!-- Links -->
-[untedected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver
+[undetected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver
 [chrome-version-gist]: https://gist.github.com/primaryobjects/d5346bf7a173dbded1a70375ff7461b4
