@@ -2,7 +2,7 @@
 
 This package exposes ``get_chrome_version`` for programmatic use.
 """
-# Copyright (c) 2023 Hasan Sezer Taşan
+# Copyright (c) 2023 Hasan Sezer Taşan <hasansezertasan@gmail.com>
 # Licensed under the MIT License
 
 from chrome_version.core import get_chrome_version

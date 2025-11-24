@@ -22,16 +22,13 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: 3.15",
-  "Programming Language :: Python :: 3.5",
-  "Programming Language :: Python :: 3.6",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python",
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.0,<4.0"
+requires-python = ">=3.8"
 dependencies = []
 
 
@@ -46,6 +43,14 @@ source = "https://github.com/hasansezertasan/chrome-version.git"
 
 [project.scripts]
 chrome-version = "chrome_version.cli:main"
+
+
+[tool.uv]
+cache-keys = [
+  { file = "pyproject.toml" },
+  { git = { commit = true, tags = true } },
+]
+trusted-publishing = "always"
 
 
 [build-system]
@@ -67,12 +72,30 @@ version_scheme = "only-version"
 local_scheme = "no-local-version"
 
 
-[tool.uv]
-cache-keys = [
-  { file = "pyproject.toml" },
-  { git = { commit = true, tags = true } },
-]
-trusted-publishing = "always"
+[tool.coverage.run]
+source_pkgs = ["chrome_version", "tests"]
+branch = true
+parallel = true
+omit = ["src/chrome_version/_version.py"]
+
+
+[tool.coverage.paths]
+chrome_version = ["src/chrome_version", "*/chrome_version/src/chrome_version"]
+tests = ["tests", "*/chrome_version/tests"]
+
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+
+
+[tool.vulture]
+min_confidence = 80
+paths = ["src", "tests"]
+sort_by_size = true
+
+
+[tool.slotscheck]
+strict-imports = false
 
 
 [tool.ruff]
@@ -81,7 +104,7 @@ output-format = "full"
 preview = true
 show-fixes = true
 src = ["src", "tests", "examples"]
-target-version = "py37"
+target-version = "py38"
 unsafe-fixes = true
 
 
@@ -98,7 +121,7 @@ preview = true
 
 [tool.ruff.lint]
 fixable = ["ALL"]
-ignore = ["COM812"]
+ignore = ["COM812", "S404", "S603", "S605", "C901", "T201"]
 logger-objects = ["logging_setup.logger"]
 preview = true
 select = ["ALL"]
@@ -126,25 +149,3 @@ parenthesize-tuple-in-subscript = true
 
 [tool.ruff.lint.mccabe]
 max-complexity = 5
-
-
-[tool.vulture]
-exclude = ["*/.venv/*.py"]
-min_confidence = 80
-paths = ["src/chrome_version"]
-sort_by_size = true
-
-
-[tool.coverage.run]
-source_pkgs = ["chrome_version", "tests"]
-branch = true
-parallel = true
-
-
-[tool.coverage.paths]
-chrome_version = ["src/chrome_version", "*/chrome_version/src/chrome_version"]
-tests = ["tests", "*/chrome_version/tests"]
-
-
-[tool.coverage.report]
-exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
