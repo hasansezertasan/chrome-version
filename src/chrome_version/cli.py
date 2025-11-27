@@ -6,7 +6,10 @@ import platform
 import sys
 from typing import Optional
 
-from chrome_version._version import version
+try:
+    from chrome_version._version import version
+except ImportError:
+    version = "development"
 from chrome_version.core import get_chrome_version
 
 
