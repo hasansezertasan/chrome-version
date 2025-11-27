@@ -21,10 +21,10 @@ def main() -> None:
         print(f"Application Version: {version}")
         print(f"Python Version: {python_version} ({python_implementation})")
         print(f"Platform: {platform.system()}")
-        return
+        sys.exit(0)
     if "--version" in sys.argv:
         print(version)
-        return
+        sys.exit(0)
     chrome_version: Optional[str] = get_chrome_version()
     if chrome_version:
         print(chrome_version)
