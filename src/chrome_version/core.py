@@ -146,8 +146,11 @@ def get_chrome_version() -> Optional[str]:
 
     # When calling the binary with spaces in the path (macOS), wrap in quotes
     if install_path:
-        version_cmd: str = f'"{install_path}" --version'
-        output: str = os.popen(version_cmd).read()
+        output: str = subprocess.check_output(
+            [install_path, "--version"],
+            text=True,
+            stderr=subprocess.DEVNULL
+        ).strip()
         match: Optional[Match[str]] = re.search(r"Google Chrome ([\d\.]+)", output)
         version: Optional[str] = match.group(1) if match else None
 
