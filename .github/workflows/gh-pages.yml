@@ -1,20 +1,22 @@
+---
 name: Github Pages
 on:
   workflow_dispatch:
   release:
-    types: [ published ]
+    types: [published]
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy Docs
     permissions:
-      contents: write
+      contents: write # IMPORTANT: Mandatory for GitHub Pages
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version-file: '.python-version'
+          python-version-file: ".python-version"
       - name: Setup uv
         id: setup-uv
         uses: astral-sh/setup-uv@v6

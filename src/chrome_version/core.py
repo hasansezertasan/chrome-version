@@ -4,17 +4,17 @@ The functions in this module provide platform-specific strategies to
 determine the locally installed Google Chrome version.
 """
 
-# Copyright (c) 2023 Hasan Sezer Taşan
+# Copyright (c) 2023 Hasan Sezer Taşan <hasansezertasan@gmail.com>
 # Licensed under the MIT License
-# ruff: noqa: S404, S603, S605, C901
 from __future__ import annotations
 
 import os
 import pathlib
 import re
 import subprocess
+from re import Match
 from sys import platform
-from typing import Optional
+from typing import List, Optional
 
 
 def extract_version_registry(output: str) -> Optional[str]:
@@ -42,7 +42,8 @@ def extract_version_registry(output: str) -> Optional[str]:
     try:
         # Use a regular expression to extract the version string after
         # "DisplayVersion    REG_SZ"
-        match = re.search(r"DisplayVersion\s+REG_SZ\s+([^\r\n]+)", output)
+        pattern = r"DisplayVersion\s+REG_SZ\s+([^\r\n]+)"
+        match: Optional[Match[str]] = re.search(pattern, output)
         if match:
             return match.group(1).strip()
     except (TypeError, ValueError):
@@ -66,8 +67,10 @@ def extract_version_folder() -> Optional[str]:
     Examples:
     --------
     ```python
-    extract_version_folder()
-    "123.0.6312.86"
+    from chrome_version.core import extract_version_folder
+
+    print(extract_version_folder())
+    # Output: "123.0.6312.86"
     ```
 
     """
@@ -78,13 +81,13 @@ def extract_version_folder() -> Optional[str]:
             + "\\Google\\Chrome\\Application"
         )
         if pathlib.Path(path).is_dir():
-            candidate_paths = [
+            candidate_paths: List[str] = [
                 entry.path for entry in os.scandir(path) if entry.is_dir()
             ]
             for candidate_path in candidate_paths:
-                directory_name = pathlib.Path(candidate_path).name
+                directory_name: str = pathlib.Path(candidate_path).name
                 pattern = r"\d+\.\d+\.\d+\.\d+"
-                match = re.search(pattern, directory_name)
+                match: Optional[Match[str]] = re.search(pattern, directory_name)
                 if match and match.group():
                     # Found a Chrome version.
                     return match[0]
@@ -137,13 +140,18 @@ def get_chrome_version() -> Optional[str]:
             )
         except subprocess.CalledProcessError:
             output = ""
-        version = extract_version_registry(output) or extract_version_folder()
+        version: Optional[str] = (
+            extract_version_registry(output=output) or extract_version_folder()
+        )
 
     # When calling the binary with spaces in the path (macOS), wrap in quotes
     if install_path:
-        version_cmd = f'"{install_path}" --version'
-        output = os.popen(version_cmd).read()
-        match = re.search(r"Google Chrome ([\d\.]+)", output)
-        version = match.group(1) if match else None
+        output: str = subprocess.check_output(
+            [install_path, "--version"],
+            text=True,
+            stderr=subprocess.DEVNULL
+        ).strip()
+        match: Optional[Match[str]] = re.search(r"Google Chrome ([\d\.]+)", output)
+        version: Optional[str] = match.group(1) if match else None
 
     return version
