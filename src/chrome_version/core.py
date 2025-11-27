@@ -70,7 +70,7 @@ def extract_version_folder() -> Optional[str]:
     from chrome_version.core import extract_version_folder
 
     print(extract_version_folder())
-    "123.0.6312.86"
+    # Output: "123.0.6312.86"
     ```
 
     """
