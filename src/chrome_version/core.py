@@ -140,18 +140,14 @@ def get_chrome_version() -> Optional[str]:
             )
         except subprocess.CalledProcessError:
             output = ""
-        version: Optional[str] = (
-            extract_version_registry(output=output) or extract_version_folder()
-        )
+        version = extract_version_registry(output=output) or extract_version_folder()
 
     # When calling the binary with spaces in the path (macOS), wrap in quotes
     if install_path:
-        output: str = subprocess.check_output(
-            [install_path, "--version"],
-            text=True,
-            stderr=subprocess.DEVNULL
+        output = subprocess.check_output(
+            [install_path, "--version"], text=True, stderr=subprocess.DEVNULL
         ).strip()
         match: Optional[Match[str]] = re.search(r"Google Chrome ([\d\.]+)", output)
-        version: Optional[str] = match.group(1) if match else None
+        version = match.group(1) if match else None
 
     return version
