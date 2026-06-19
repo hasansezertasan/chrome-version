@@ -7,7 +7,7 @@ import sys
 from typing import Optional
 
 try:
-    from chrome_version._version import version
+    from chrome_version._version import version  # type: ignore[import-not-found]
 except ImportError:
     version = "development"
 from chrome_version.core import get_chrome_version
