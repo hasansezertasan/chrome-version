@@ -144,7 +144,10 @@ def get_chrome_version() -> Optional[str]:
 
     # When calling the binary with spaces in the path (macOS), wrap in quotes
     if install_path:
-        output = subprocess.check_output(
+        # install_path is one of the hardcoded literals assigned above and the
+        # argv (list) form is used without shell=True, so there is no injection
+        # surface; the trailing directive suppresses the subprocess audit advisory.
+        output = subprocess.check_output(  # nosemgrep
             [install_path, "--version"], text=True, stderr=subprocess.DEVNULL
         ).strip()
         match: Optional[Match[str]] = re.search(r"Google Chrome ([\d\.]+)", output)
