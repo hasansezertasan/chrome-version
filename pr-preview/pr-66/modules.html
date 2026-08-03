@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="amber" data-content_root="./">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Modules - chrome-version</title><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Usage" href="usage.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link media="print" rel="stylesheet" type="text/css" href="_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Modules"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="index.html">
+      
+      
+      <strong>chrome-version</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/hasansezertasan/chrome-version" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#package-chrome-version">Package (<code class="docutils literal notranslate"><span class="pre">chrome_version</span></code>)</a><ul>
+<li><a class="reference internal" href="#chrome_version.get_chrome_version"><code class="docutils literal notranslate"><span class="pre">get_chrome_version()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#core-chrome-version-core">Core (<code class="docutils literal notranslate">core</span></code>)</a><ul>
+<li><a class="reference internal" href="#chrome_version.core.extract_version_registry"><code class="docutils literal notranslate"><span class="pre">extract_version_registry()</span></code></a></li>
+<li><a class="reference internal" href="#chrome_version.core.extract_version_folder"><code class="docutils literal notranslate"><span class="pre">extract_version_folder()</span></code></a></li>
+<li><a class="reference internal" href="#chrome_version.core.get_chrome_version"><code class="docutils literal notranslate"><span class="pre">get_chrome_version()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cli-chrome-version-cli">CLI (<code class="docutils literal notranslate">cli</span></code>)</a><ul>
+<li><a class="reference internal" href="#chrome_version.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">chrome-version</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Modules</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h1>
+<p>The API reference below is generated automatically from the source docstrings.</p>
+<section id="package-chrome-version">
+<h2>Package (<code class="docutils literal notranslate"><span class="pre">chrome_version</span></code>)<a class="headerlink" href="#package-chrome-version" title="Link to this heading">¶</a></h2>
+<p>The public interface. <a class="reference internal" href="#chrome_version.get_chrome_version" title="chrome_version.get_chrome_version"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_chrome_version()</span></code></a> is re-exported
+here for convenient access.</p>
+<p id="module-chrome_version">Public package interface for <code class="docutils literal notranslate"><span class="pre">chrome_version</span></code>.</p>
+<p>This package exposes <code class="docutils literal notranslate"><span class="pre">get_chrome_version</span></code> for programmatic use.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="chrome_version.get_chrome_version">
+<span class="sig-prename descclassname"><span class="pre">chrome_version.</span></span><span class="sig-name descname"><span class="pre">get_chrome_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#get_chrome_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.get_chrome_version" title="Link to this definition">¶</a></dt>
+<dd><p>Get the installed Google Chrome version for the current platform.</p>
+<p>On Linux and macOS, the function invokes the Chrome binary with the
+<code class="docutils literal notranslate"><span class="pre">--version</span></code> flag. On Windows, it first attempts to read the version
+from the registry; if unavailable, it falls back to parsing the
+installation directory name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Chrome version string if detected, otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">get_chrome_version</span><span class="p">()</span>  
+</span><span data-line="2"><span class="go">&#39;123.0.6312.86&#39;</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="core-chrome-version-core">
+<h2>Core (<code class="docutils literal notranslate"><span class="pre">chrome_version.core</span></code>)<a class="headerlink" href="#core-chrome-version-core" title="Link to this heading">¶</a></h2>
+<p>Platform-specific Chrome-detection logic.</p>
+<p id="module-chrome_version.core">Core utilities for detecting the installed Google Chrome version.</p>
+<p>The functions in this module provide platform-specific strategies to
+determine the locally installed Google Chrome version.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="chrome_version.core.extract_version_registry">
+<span class="sig-prename descclassname"><span class="pre">chrome_version.core.</span></span><span class="sig-name descname"><span class="pre">extract_version_registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#extract_version_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.core.extract_version_registry" title="Link to this definition">¶</a></dt>
+<dd><p>Extract the Chrome version from a Windows registry query output string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="chrome_version.core.extract_version_registry.params.output"></span><strong>output</strong><a class="paramlink headerlink reference internal" href="#chrome_version.core.extract_version_registry.params.output">¶</a> – Raw text captured from a <code class="docutils literal notranslate"><span class="pre">reg</span> <span class="pre">query</span></code> command targeting the
+Google Chrome uninstall key.</p></li>
+<li><p><strong>output</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Chrome version string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;123.0.6312.86&quot;</span></code>) if found, otherwise
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;DisplayVersion    REG_SZ    123.0.6312.86&quot;</span>
+</span><span data-line="2"><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_version_registry</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span><span data-line="3"><span class="go">&#39;123.0.6312.86&#39;</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chrome_version.core.extract_version_folder">
+<span class="sig-prename descclassname"><span class="pre">chrome_version.core.</span></span><span class="sig-name descname"><span class="pre">extract_version_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#extract_version_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.core.extract_version_folder" title="Link to this definition">¶</a></dt>
+<dd><p>Extract the Chrome version by inspecting Windows installation folders.</p>
+<p>Checks both 32-bit and 64-bit <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Files</span></code> directories for a Chrome
+<code class="docutils literal notranslate"><span class="pre">Application</span></code> folder whose subdirectory name matches a version pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Chrome version string if a matching directory name is found,
+otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chrome_version.core.get_chrome_version">
+<span class="sig-prename descclassname"><span class="pre">chrome_version.core.</span></span><span class="sig-name descname"><span class="pre">get_chrome_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#get_chrome_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.core.get_chrome_version" title="Link to this definition">¶</a></dt>
+<dd><p>Get the installed Google Chrome version for the current platform.</p>
+<p>On Linux and macOS, the function invokes the Chrome binary with the
+<code class="docutils literal notranslate"><span class="pre">--version</span></code> flag. On Windows, it first attempts to read the version
+from the registry; if unavailable, it falls back to parsing the
+installation directory name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Chrome version string if detected, otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">get_chrome_version</span><span class="p">()</span>  
+</span><span data-line="2"><span class="go">&#39;123.0.6312.86&#39;</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cli-chrome-version-cli">
+<h2>CLI (<code class="docutils literal notranslate"><span class="pre">chrome_version.cli</span></code>)<a class="headerlink" href="#cli-chrome-version-cli" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">chrome-version</span></code> console-script entrypoint.</p>
+<p id="module-chrome_version.cli">CLI entrypoint for retrieving the installed Chrome version.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="chrome_version.cli.main">
+<span class="sig-prename descclassname"><span class="pre">chrome_version.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.cli.main" title="Link to this definition">¶</a></dt>
+<dd><p>Print the detected Chrome version to stdout.</p>
+<p>This function is used by the <code class="docutils literal notranslate"><span class="pre">chrome-version</span></code> console script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="usage.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Usage</div></div>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Hasan Sezer Taşan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/hasansezertasan/chrome-version" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=b8b12719"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="_static/shibuya.js?v=50760d75"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script></body>
+</html>
