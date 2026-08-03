@@ -14,36 +14,29 @@ import re
 import subprocess
 from re import Match
 from sys import platform
-from typing import List, Optional
 
 
-def extract_version_registry(output: str) -> Optional[str]:
-    """Extract Chrome version from a Windows registry query output string.
+def extract_version_registry(output: str) -> str | None:
+    """Extract the Chrome version from a Windows registry query output string.
 
-    Parameters
-    ----------
-    output: str
-        Raw text captured from a ``reg query`` command targeting the Google Chrome
-        uninstall key.
+    Args:
+        output: Raw text captured from a ``reg query`` command targeting the
+            Google Chrome uninstall key.
 
     Returns:
-    -------
-    Optional[str]
-        Chrome version string (e.g., ``"123.0.6312.86"``) if found; otherwise ``None``.
+        The Chrome version string (e.g. ``"123.0.6312.86"``) if found, otherwise
+        ``None``.
 
     Examples:
-    --------
-    ```python
-    extract_version_registry()
-    "123.0.6312.86"
-    ```
-
+        >>> out = "DisplayVersion    REG_SZ    123.0.6312.86"
+        >>> extract_version_registry(out)
+        '123.0.6312.86'
     """
     try:
         # Use a regular expression to extract the version string after
         # "DisplayVersion    REG_SZ"
         pattern = r"DisplayVersion\s+REG_SZ\s+([^\r\n]+)"
-        match: Optional[Match[str]] = re.search(pattern, output)
+        match: Match[str] | None = re.search(pattern, output)
         if match:
             return match.group(1).strip()
     except (TypeError, ValueError):
@@ -53,26 +46,15 @@ def extract_version_registry(output: str) -> Optional[str]:
         return None
 
 
-def extract_version_folder() -> Optional[str]:
-    """Extract Chrome version by inspecting Windows installation folders.
+def extract_version_folder() -> str | None:
+    """Extract the Chrome version by inspecting Windows installation folders.
 
     Checks both 32-bit and 64-bit ``Program Files`` directories for a Chrome
     ``Application`` folder whose subdirectory name matches a version pattern.
 
     Returns:
-    -------
-    Optional[str]
-        Chrome version string if a matching directory name is found; otherwise ``None``.
-
-    Examples:
-    --------
-    ```python
-    from chrome_version.core import extract_version_folder
-
-    print(extract_version_folder())
-    # Output: "123.0.6312.86"
-    ```
-
+        The Chrome version string if a matching directory name is found,
+        otherwise ``None``.
     """
     for program_files_variant_index in range(2):
         path = (
@@ -81,13 +63,13 @@ def extract_version_folder() -> Optional[str]:
             + "\\Google\\Chrome\\Application"
         )
         if pathlib.Path(path).is_dir():
-            candidate_paths: List[str] = [
+            candidate_paths: list[str] = [
                 entry.path for entry in os.scandir(path) if entry.is_dir()
             ]
             for candidate_path in candidate_paths:
                 directory_name: str = pathlib.Path(candidate_path).name
                 pattern = r"\d+\.\d+\.\d+\.\d+"
-                match: Optional[Match[str]] = re.search(pattern, directory_name)
+                match: Match[str] | None = re.search(pattern, directory_name)
                 if match and match.group():
                     # Found a Chrome version.
                     return match[0]
@@ -95,7 +77,7 @@ def extract_version_folder() -> Optional[str]:
     return None
 
 
-def get_chrome_version() -> Optional[str]:
+def get_chrome_version() -> str | None:
     """Get the installed Google Chrome version for the current platform.
 
     On Linux and macOS, the function invokes the Chrome binary with the
@@ -104,19 +86,14 @@ def get_chrome_version() -> Optional[str]:
     installation directory name.
 
     Returns:
-    -------
-    Optional[str]
-        Chrome version string if detected; otherwise ``None``.
+        The Chrome version string if detected, otherwise ``None``.
 
     Examples:
-    --------
-    ```python
-    get_chrome_version()
-    "123.0.6312.86"
-    ```
+        >>> get_chrome_version()  # doctest: +SKIP
+        '123.0.6312.86'
     """
-    version: Optional[str] = None
-    install_path: Optional[str] = None
+    version: str | None = None
+    install_path: str | None = None
 
     if platform.startswith("linux"):
         # Linux
@@ -134,9 +111,7 @@ def get_chrome_version() -> Optional[str]:
         reg_query_cmd = ["reg", "query", query]
         try:
             output = subprocess.check_output(
-                reg_query_cmd,
-                stderr=subprocess.STDOUT,
-                text=True,
+                reg_query_cmd, stderr=subprocess.STDOUT, text=True
             )
         except subprocess.CalledProcessError:
             output = ""
@@ -150,7 +125,7 @@ def get_chrome_version() -> Optional[str]:
         output = subprocess.check_output(  # nosemgrep
             [install_path, "--version"], text=True, stderr=subprocess.DEVNULL
         ).strip()
-        match: Optional[Match[str]] = re.search(r"Google Chrome ([\d\.]+)", output)
+        match: Match[str] | None = re.search(r"Google Chrome ([\d\.]+)", output)
         version = match.group(1) if match else None
 
     return version

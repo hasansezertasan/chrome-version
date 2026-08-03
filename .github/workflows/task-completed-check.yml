@@ -1,0 +1,25 @@
+---
+name: Task Completed Check
+on:
+  # pull_request_target is required so the check run posts on PRs from forks with
+  # a least-privilege `checks: write` token. It is safe here: no PR code is checked
+  # out or executed — the pinned action only reads the PR description's task list.
+  pull_request_target:  # zizmor: ignore[dangerous-triggers]
+    types: [opened, edited, synchronize, reopened]
+jobs:
+  task-check:
+    name: Check PR task list
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      checks: write
+      pull-requests: read
+    steps:
+      - name: Check completed tasks
+        # Skip automated PRs (Renovate, Dependabot, etc.) — bots leave task
+        # checkboxes (e.g. Renovate's rebase box) unticked. Keyed on the PR
+        # author, not github.actor, so a human editing a bot PR still skips.
+        if: ${{ !endsWith(github.event.pull_request.user.login, '[bot]') }}
+        uses: kentaro-m/task-completed-checker-action@2ddb65fdd5577bae4a8e82e0564e459677aec893  # v0.1.2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

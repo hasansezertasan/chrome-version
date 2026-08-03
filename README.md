@@ -37,6 +37,7 @@ Module:
 
 ```python
 import chrome_version
+
 print(chrome_version.get_chrome_version())
 # '103.0.5060.114'
 ```
