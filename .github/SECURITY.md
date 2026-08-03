@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Only the latest released version of chrome_version receives security
+Only the latest released version of chrome-version receives security
 updates. Please upgrade before reporting an issue.
 
 ## Reporting a Vulnerability
@@ -12,7 +12,7 @@ discussions, or pull requests.**
 
 Instead, report them privately using one of the following channels:
 
-- Use GitHub's [private vulnerability reporting](https://github.com/hasansezertasan/chrome_version/security/advisories/new)
+- Use GitHub's [private vulnerability reporting](https://github.com/hasansezertasan/chrome-version/security/advisories/new)
   (Security tab → "Report a vulnerability"). This is the preferred method.
 - Or email <hasansezertasan@gmail.com> directly.
 

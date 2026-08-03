@@ -1,4 +1,4 @@
-# Code of Conduct - chrome_version
+# Code of Conduct - chrome-version
 
 ## Our Pledge
 

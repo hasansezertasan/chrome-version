@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a bug in `chrome_version`
+about: Report a bug in `chrome-version`
 title: 'Bug: '
 labels: bug
 assignees: 'hasansezertasan'
@@ -8,7 +8,7 @@ assignees: 'hasansezertasan'
 ## Bug Description
 
 <!--
-This issue tracker is for bugs in chrome_version itself.
+This issue tracker is for bugs in chrome-version itself.
 Please use GitHub Discussions for questions about your own code.
 
 Replace this comment with a clear description of what the bug is.
