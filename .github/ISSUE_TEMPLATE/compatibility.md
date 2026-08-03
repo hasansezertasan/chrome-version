@@ -22,7 +22,7 @@ A clear and concise description of what you expected to happen.
 
 > Please complete the following information
 
-- chrome-version version: [e.g. 0.4.0]
+- chrome-version version: [run: chrome-version --version]
 - Python version: [e.g. 3.10]
 - OS: [e.g. Ubuntu 20.04]
 - Installation method: [e.g. pip, uv, uvx, from source]

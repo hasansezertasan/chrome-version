@@ -36,7 +36,7 @@ Traceback (most recent call last):
 
 <!-- Please complete the following: -->
 
-- chrome-version version: <!-- e.g. 0.4.0 -->
+- chrome-version version: <!-- run: chrome-version --version -->
 - Python version: <!-- e.g. 3.12 -->
 - OS and version: <!-- e.g. Windows 11, macOS 14, Ubuntu 24.04 -->
 - Installation method: <!-- e.g. pip, uv, uvx, from source -->

@@ -21,8 +21,8 @@ max_line_length = 88
 indent_style = tab
 indent_size = unset
 
-# Batch Files and PowerShell Scripts use tabs for indentation
-[*.{bat,ps1}]
+# Batch/CMD files and PowerShell scripts use tabs for indentation
+[*.{bat,cmd,ps1}]
 indent_style = tab
 end_of_line = crlf
 
@@ -47,7 +47,7 @@ indent_size = 2
 indent_size = 2
 
 # Ignore binary or generated files
-[*.{png,jpg,gif,ico,woff,woff2,ttf,eot,svg,pdf}]
+[*.{png,jpg,jpeg,gif,ico,woff,woff2,ttf,eot,svg,pdf,zip,gz,whl}]
 charset = unset
 end_of_line = unset
 indent_style = unset
