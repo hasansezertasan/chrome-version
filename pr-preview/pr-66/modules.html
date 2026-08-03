@@ -84,8 +84,8 @@ data-aria-dark="Switch to auto color mode">
 </ul>
 </li>
 <li><a class="reference internal" href="#core-chrome-version-core">Core (<code class="docutils literal notranslate">core</span></code>)</a><ul>
-<li><a class="reference internal" href="#chrome_version.core.extract_version_registry"><code class="docutils literal notranslate"><span class="pre">extract_version_registry()</span></code></a></li>
 <li><a class="reference internal" href="#chrome_version.core.extract_version_folder"><code class="docutils literal notranslate"><span class="pre">extract_version_folder()</span></code></a></li>
+<li><a class="reference internal" href="#chrome_version.core.extract_version_registry"><code class="docutils literal notranslate"><span class="pre">extract_version_registry()</span></code></a></li>
 <li><a class="reference internal" href="#chrome_version.core.get_chrome_version"><code class="docutils literal notranslate"><span class="pre">get_chrome_version()</span></code></a></li>
 </ul>
 </li>
@@ -163,6 +163,23 @@ installation directory name.</p>
 <p>The functions in this module provide platform-specific strategies to
 determine the locally installed Google Chrome version.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="chrome_version.core.extract_version_folder">
+<span class="sig-prename descclassname"><span class="pre">chrome_version.core.</span></span><span class="sig-name descname"><span class="pre">extract_version_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#extract_version_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.core.extract_version_folder" title="Link to this definition">¶</a></dt>
+<dd><p>Extract the Chrome version by inspecting Windows installation folders.</p>
+<p>Checks both 32-bit and 64-bit <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Files</span></code> directories for a Chrome
+<code class="docutils literal notranslate"><span class="pre">Application</span></code> folder whose subdirectory name matches a version pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Chrome version string if a matching directory name is found,
+otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="chrome_version.core.extract_version_registry">
 <span class="sig-prename descclassname"><span class="pre">chrome_version.core.</span></span><span class="sig-name descname"><span class="pre">extract_version_registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#extract_version_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.core.extract_version_registry" title="Link to this definition">¶</a></dt>
 <dd><p>Extract the Chrome version from a Windows registry query output string.</p>
@@ -188,23 +205,6 @@ Google Chrome uninstall key.</p></li>
 </span><span data-line="3"><span class="go">&#39;123.0.6312.86&#39;</span>
 </span></pre></div>
 </div>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="chrome_version.core.extract_version_folder">
-<span class="sig-prename descclassname"><span class="pre">chrome_version.core.</span></span><span class="sig-name descname"><span class="pre">extract_version_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chrome_version/core.html#extract_version_folder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chrome_version.core.extract_version_folder" title="Link to this definition">¶</a></dt>
-<dd><p>Extract the Chrome version by inspecting Windows installation folders.</p>
-<p>Checks both 32-bit and 64-bit <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Files</span></code> directories for a Chrome
-<code class="docutils literal notranslate"><span class="pre">Application</span></code> folder whose subdirectory name matches a version pattern.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Chrome version string if a matching directory name is found,
-otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py function">
