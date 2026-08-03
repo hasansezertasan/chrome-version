@@ -395,7 +395,7 @@ merging: keep your project identity, adopt the template's tooling/config changes
 
 ## Join The Project Team
 
-*Work in progress.*
+_Work in progress._
 
 <!-- omit in toc -->
 ## Attribution

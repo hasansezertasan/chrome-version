@@ -16,6 +16,8 @@ except ImportError:  # pragma: no cover
     version = "development"
 from chrome_version.core import get_chrome_version
 
+__all__ = ["main"]
+
 
 def main() -> None:
     """Print the detected Chrome version to stdout.

@@ -15,6 +15,8 @@ import subprocess
 from re import Match
 from sys import platform
 
+__all__ = ["extract_version_folder", "extract_version_registry", "get_chrome_version"]
+
 
 def extract_version_registry(output: str) -> str | None:
     """Extract the Chrome version from a Windows registry query output string.
