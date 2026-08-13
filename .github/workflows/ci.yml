@@ -121,6 +121,38 @@ jobs:
       - name: Note skipped coverage upload
         if: ${{ env.CODECOV_TOKEN_SET != 'true' && env.REPO_IS_PUBLIC != 'true' && matrix.os == 'ubuntu-latest' }}
         run: echo "::notice::CODECOV_TOKEN secret is not set and this repo is private — skipping the Codecov upload. See .github/CONTRIBUTING.md (Repository setup) to enable coverage reporting."
+  ci-prerelease:
+    # Non-blocking smoke test on the Python 3.15 prerelease so the advertised
+    # 3.15 trove classifier is actually exercised ahead of release. uv provisions
+    # the 3.15 build from python-build-standalone. This job is intentionally left
+    # out of the `check` gate's needs and marked continue-on-error, so a
+    # prerelease regression (or a runner without a 3.15 build) never blocks a
+    # merge. Fold 3.15 into the main matrix once it reaches a stable release.
+    name: Run Tests on Python 3.15 (prerelease, non-blocking)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version-file: .python-version
+      - name: Setup uv
+        id: setup-uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9  # v9.0.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Run the tests on Python 3.15
+        run: uv run --locked tox run -e 3.15
   check:
     if: always()
     needs: [ci, hooks]
