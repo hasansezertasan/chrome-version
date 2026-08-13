@@ -65,7 +65,7 @@ dev = [
   { include-group = "test" },
 ]
 style = [
-  "basedpyright==1.39.9",
+  "basedpyright==1.39.10",
   "editorconfig-checker==3.8.0",
   "import-linter==2.13",
   "mypy==2.3.0",
