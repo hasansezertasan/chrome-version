@@ -6,7 +6,7 @@
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e1a1ceaf" />
-    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=9454f7d5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=2ceb65ce" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -160,105 +160,104 @@ data-aria-dark="Switch to auto color mode">
 </span><span data-line="44">    <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
 </span><span data-line="45">        <span class="c1"># Gracefully handle unexpected input types or missing key</span>
 </span><span data-line="46">        <span class="k">return</span> <span class="kc">None</span>
-</span><span data-line="47">    <span class="k">else</span><span class="p">:</span>
-</span><span data-line="48">        <span class="k">return</span> <span class="kc">None</span></div>
+</span><span data-line="47">    <span class="k">return</span> <span class="kc">None</span></div>
 
+</span><span data-line="48">
 </span><span data-line="49">
-</span><span data-line="50">
 <div class="viewcode-block" id="extract_version_folder">
 <a class="viewcode-back" href="../../modules.html#chrome_version.extract_version_folder">[docs]</a>
-</span><span data-line="51"><span class="k">def</span><span class="w"> </span><span class="nf">extract_version_folder</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-</span><span data-line="52"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract the Chrome version by inspecting Windows installation folders.</span>
-</span><span data-line="53">
-</span><span data-line="54"><span class="sd">    Checks both 32-bit and 64-bit ``Program Files`` directories for a Chrome</span>
-</span><span data-line="55"><span class="sd">    ``Application`` folder whose subdirectory name matches a version pattern.</span>
-</span><span data-line="56">
-</span><span data-line="57"><span class="sd">    Returns:</span>
-</span><span data-line="58"><span class="sd">        The Chrome version string if a matching directory name is found,</span>
-</span><span data-line="59"><span class="sd">        otherwise ``None``.</span>
-</span><span data-line="60"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span data-line="61">    <span class="k">for</span> <span class="n">program_files_variant_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-</span><span data-line="62">        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span>
-</span><span data-line="63">            <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Program Files&quot;</span>
-</span><span data-line="64">            <span class="o">+</span> <span class="p">(</span><span class="s2">&quot; (x86)&quot;</span> <span class="k">if</span> <span class="n">program_files_variant_index</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-</span><span data-line="65">            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">Google</span><span class="se">\\</span><span class="s2">Chrome</span><span class="se">\\</span><span class="s2">Application&quot;</span>
-</span><span data-line="66">        <span class="p">)</span>
-</span><span data-line="67">        <span class="k">if</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
-</span><span data-line="68">            <span class="n">candidate_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-</span><span data-line="69">                <span class="n">entry</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
-</span><span data-line="70">            <span class="p">]</span>
-</span><span data-line="71">            <span class="k">for</span> <span class="n">candidate_path</span> <span class="ow">in</span> <span class="n">candidate_paths</span><span class="p">:</span>
-</span><span data-line="72">                <span class="n">directory_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">candidate_path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
-</span><span data-line="73">                <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d+\.\d+\.\d+\.\d+&quot;</span>
-</span><span data-line="74">                <span class="n">match</span><span class="p">:</span> <span class="n">Match</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">directory_name</span><span class="p">)</span>
-</span><span data-line="75">                <span class="k">if</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
-</span><span data-line="76">                    <span class="c1"># Found a Chrome version.</span>
-</span><span data-line="77">                    <span class="k">return</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span data-line="78">
-</span><span data-line="79">    <span class="k">return</span> <span class="kc">None</span></div>
+</span><span data-line="50"><span class="k">def</span><span class="w"> </span><span class="nf">extract_version_folder</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="51"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract the Chrome version by inspecting Windows installation folders.</span>
+</span><span data-line="52">
+</span><span data-line="53"><span class="sd">    Checks both 32-bit and 64-bit ``Program Files`` directories for a Chrome</span>
+</span><span data-line="54"><span class="sd">    ``Application`` folder whose subdirectory name matches a version pattern.</span>
+</span><span data-line="55">
+</span><span data-line="56"><span class="sd">    Returns:</span>
+</span><span data-line="57"><span class="sd">        The Chrome version string if a matching directory name is found,</span>
+</span><span data-line="58"><span class="sd">        otherwise ``None``.</span>
+</span><span data-line="59"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="60">    <span class="k">for</span> <span class="n">program_files_variant_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+</span><span data-line="61">        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span>
+</span><span data-line="62">            <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Program Files&quot;</span>
+</span><span data-line="63">            <span class="o">+</span> <span class="p">(</span><span class="s2">&quot; (x86)&quot;</span> <span class="k">if</span> <span class="n">program_files_variant_index</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="64">            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">Google</span><span class="se">\\</span><span class="s2">Chrome</span><span class="se">\\</span><span class="s2">Application&quot;</span>
+</span><span data-line="65">        <span class="p">)</span>
+</span><span data-line="66">        <span class="k">if</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+</span><span data-line="67">            <span class="n">candidate_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="68">                <span class="n">entry</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+</span><span data-line="69">            <span class="p">]</span>
+</span><span data-line="70">            <span class="k">for</span> <span class="n">candidate_path</span> <span class="ow">in</span> <span class="n">candidate_paths</span><span class="p">:</span>
+</span><span data-line="71">                <span class="n">directory_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">candidate_path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+</span><span data-line="72">                <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\d+\.\d+\.\d+\.\d+&quot;</span>
+</span><span data-line="73">                <span class="n">match</span><span class="p">:</span> <span class="n">Match</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">directory_name</span><span class="p">)</span>
+</span><span data-line="74">                <span class="k">if</span> <span class="n">match</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
+</span><span data-line="75">                    <span class="c1"># Found a Chrome version.</span>
+</span><span data-line="76">                    <span class="k">return</span> <span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="77">
+</span><span data-line="78">    <span class="k">return</span> <span class="kc">None</span></div>
 
+</span><span data-line="79">
 </span><span data-line="80">
-</span><span data-line="81">
 <div class="viewcode-block" id="get_chrome_version">
 <a class="viewcode-back" href="../../modules.html#chrome_version.get_chrome_version">[docs]</a>
-</span><span data-line="82"><span class="k">def</span><span class="w"> </span><span class="nf">get_chrome_version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-</span><span data-line="83"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the installed Google Chrome version for the current platform.</span>
-</span><span data-line="84">
-</span><span data-line="85"><span class="sd">    On Linux and macOS, the function invokes the Chrome binary with the</span>
-</span><span data-line="86"><span class="sd">    ``--version`` flag. On Windows, it first attempts to read the version</span>
-</span><span data-line="87"><span class="sd">    from the registry; if unavailable, it falls back to parsing the</span>
-</span><span data-line="88"><span class="sd">    installation directory name.</span>
-</span><span data-line="89">
-</span><span data-line="90"><span class="sd">    Returns:</span>
-</span><span data-line="91"><span class="sd">        The Chrome version string if detected, otherwise ``None``.</span>
-</span><span data-line="92">
-</span><span data-line="93"><span class="sd">    Examples:</span>
-</span><span data-line="94"><span class="sd">        &gt;&gt;&gt; get_chrome_version()  # doctest: +SKIP</span>
-</span><span data-line="95"><span class="sd">        &#39;123.0.6312.86&#39;</span>
-</span><span data-line="96"><span class="sd">    &quot;&quot;&quot;</span>
-</span><span data-line="97">    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span data-line="98">    <span class="n">install_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span data-line="99">
-</span><span data-line="100">    <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;linux&quot;</span><span class="p">):</span>
-</span><span data-line="101">        <span class="c1"># Linux</span>
-</span><span data-line="102">        <span class="n">install_path</span> <span class="o">=</span> <span class="s2">&quot;/usr/bin/google-chrome&quot;</span>
-</span><span data-line="103">    <span class="k">elif</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
-</span><span data-line="104">        <span class="c1"># macOS</span>
-</span><span data-line="105">        <span class="n">install_path</span> <span class="o">=</span> <span class="s2">&quot;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&quot;</span>
-</span><span data-line="106">    <span class="k">elif</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
-</span><span data-line="107">        <span class="c1"># Windows</span>
-</span><span data-line="108">        <span class="c1"># Try registry key first, fall back to folder name parsing</span>
-</span><span data-line="109">        <span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
-</span><span data-line="110">            <span class="s2">&quot;HKLM</span><span class="se">\\</span><span class="s2">SOFTWARE</span><span class="se">\\</span><span class="s2">Wow6432Node</span><span class="se">\\</span><span class="s2">Microsoft</span><span class="se">\\</span><span class="s2">Windows</span><span class="se">\\</span><span class="s2">CurrentVersion</span><span class="se">\\</span><span class="s2">&quot;</span>
-</span><span data-line="111">            <span class="s2">&quot;Uninstall</span><span class="se">\\</span><span class="s2">Google Chrome&quot;</span>
-</span><span data-line="112">        <span class="p">)</span>
-</span><span data-line="113">        <span class="n">reg_query_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">]</span>
-</span><span data-line="114">        <span class="k">try</span><span class="p">:</span>
-</span><span data-line="115">            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
-</span><span data-line="116">                <span class="n">reg_query_cmd</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
-</span><span data-line="117">            <span class="p">)</span>
-</span><span data-line="118">        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
-</span><span data-line="119">            <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span data-line="120">        <span class="n">version</span> <span class="o">=</span> <span class="n">extract_version_registry</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span> <span class="ow">or</span> <span class="n">extract_version_folder</span><span class="p">()</span>
-</span><span data-line="121">
-</span><span data-line="122">    <span class="c1"># When calling the binary with spaces in the path (macOS), wrap in quotes</span>
-</span><span data-line="123">    <span class="k">if</span> <span class="n">install_path</span><span class="p">:</span>
-</span><span data-line="124">        <span class="c1"># install_path is one of the hardcoded literals assigned above and the</span>
-</span><span data-line="125">        <span class="c1"># argv (list) form is used without shell=True, so there is no injection</span>
-</span><span data-line="126">        <span class="c1"># surface; the trailing directive suppresses the subprocess audit advisory.</span>
-</span><span data-line="127">        <span class="k">try</span><span class="p">:</span>
-</span><span data-line="128">            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>  <span class="c1"># nosemgrep</span>
-</span><span data-line="129">                <span class="p">[</span><span class="n">install_path</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span>
-</span><span data-line="130">            <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span data-line="131">        <span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">):</span>
-</span><span data-line="132">            <span class="c1"># Chrome is not installed at the expected path (missing binary) or the</span>
-</span><span data-line="133">            <span class="c1"># binary exited non-zero; report &quot;not detected&quot; per the documented</span>
-</span><span data-line="134">            <span class="c1"># ``str | None`` contract instead of propagating the OS error.</span>
-</span><span data-line="135">            <span class="k">return</span> <span class="kc">None</span>
-</span><span data-line="136">        <span class="n">match</span><span class="p">:</span> <span class="n">Match</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Google Chrome ([\d\.]+)&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
-</span><span data-line="137">        <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="kc">None</span>
-</span><span data-line="138">
-</span><span data-line="139">    <span class="k">return</span> <span class="n">version</span></div>
+</span><span data-line="81"><span class="k">def</span><span class="w"> </span><span class="nf">get_chrome_version</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="82"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the installed Google Chrome version for the current platform.</span>
+</span><span data-line="83">
+</span><span data-line="84"><span class="sd">    On Linux and macOS, the function invokes the Chrome binary with the</span>
+</span><span data-line="85"><span class="sd">    ``--version`` flag. On Windows, it first attempts to read the version</span>
+</span><span data-line="86"><span class="sd">    from the registry; if unavailable, it falls back to parsing the</span>
+</span><span data-line="87"><span class="sd">    installation directory name.</span>
+</span><span data-line="88">
+</span><span data-line="89"><span class="sd">    Returns:</span>
+</span><span data-line="90"><span class="sd">        The Chrome version string if detected, otherwise ``None``.</span>
+</span><span data-line="91">
+</span><span data-line="92"><span class="sd">    Examples:</span>
+</span><span data-line="93"><span class="sd">        &gt;&gt;&gt; get_chrome_version()  # doctest: +SKIP</span>
+</span><span data-line="94"><span class="sd">        &#39;123.0.6312.86&#39;</span>
+</span><span data-line="95"><span class="sd">    &quot;&quot;&quot;</span>
+</span><span data-line="96">    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="97">    <span class="n">install_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="98">
+</span><span data-line="99">    <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;linux&quot;</span><span class="p">):</span>
+</span><span data-line="100">        <span class="c1"># Linux</span>
+</span><span data-line="101">        <span class="n">install_path</span> <span class="o">=</span> <span class="s2">&quot;/usr/bin/google-chrome&quot;</span>
+</span><span data-line="102">    <span class="k">elif</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;darwin&quot;</span><span class="p">:</span>
+</span><span data-line="103">        <span class="c1"># macOS</span>
+</span><span data-line="104">        <span class="n">install_path</span> <span class="o">=</span> <span class="s2">&quot;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&quot;</span>
+</span><span data-line="105">    <span class="k">elif</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
+</span><span data-line="106">        <span class="c1"># Windows</span>
+</span><span data-line="107">        <span class="c1"># Try registry key first, fall back to folder name parsing</span>
+</span><span data-line="108">        <span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
+</span><span data-line="109">            <span class="s2">&quot;HKLM</span><span class="se">\\</span><span class="s2">SOFTWARE</span><span class="se">\\</span><span class="s2">Wow6432Node</span><span class="se">\\</span><span class="s2">Microsoft</span><span class="se">\\</span><span class="s2">Windows</span><span class="se">\\</span><span class="s2">CurrentVersion</span><span class="se">\\</span><span class="s2">&quot;</span>
+</span><span data-line="110">            <span class="s2">&quot;Uninstall</span><span class="se">\\</span><span class="s2">Google Chrome&quot;</span>
+</span><span data-line="111">        <span class="p">)</span>
+</span><span data-line="112">        <span class="n">reg_query_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">]</span>
+</span><span data-line="113">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="114">            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
+</span><span data-line="115">                <span class="n">reg_query_cmd</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
+</span><span data-line="116">            <span class="p">)</span>
+</span><span data-line="117">        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
+</span><span data-line="118">            <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span data-line="119">        <span class="n">version</span> <span class="o">=</span> <span class="n">extract_version_registry</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span> <span class="ow">or</span> <span class="n">extract_version_folder</span><span class="p">()</span>
+</span><span data-line="120">
+</span><span data-line="121">    <span class="c1"># When calling the binary with spaces in the path (macOS), wrap in quotes</span>
+</span><span data-line="122">    <span class="k">if</span> <span class="n">install_path</span><span class="p">:</span>
+</span><span data-line="123">        <span class="c1"># install_path is one of the hardcoded literals assigned above and the</span>
+</span><span data-line="124">        <span class="c1"># argv (list) form is used without shell=True, so there is no injection</span>
+</span><span data-line="125">        <span class="c1"># surface; the trailing directive suppresses the subprocess audit advisory.</span>
+</span><span data-line="126">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="127">            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>  <span class="c1"># nosemgrep</span>
+</span><span data-line="128">                <span class="p">[</span><span class="n">install_path</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span>
+</span><span data-line="129">            <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span data-line="130">        <span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">):</span>
+</span><span data-line="131">            <span class="c1"># Chrome is not installed at the expected path (missing binary) or the</span>
+</span><span data-line="132">            <span class="c1"># binary exited non-zero; report &quot;not detected&quot; per the documented</span>
+</span><span data-line="133">            <span class="c1"># ``str | None`` contract instead of propagating the OS error.</span>
+</span><span data-line="134">            <span class="k">return</span> <span class="kc">None</span>
+</span><span data-line="135">        <span class="n">match</span><span class="p">:</span> <span class="n">Match</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Google Chrome ([\d\.]+)&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+</span><span data-line="136">        <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="kc">None</span>
+</span><span data-line="137">
+</span><span data-line="138">    <span class="k">return</span> <span class="n">version</span></div>
 
 </span></pre></div>
         </article><button class="back-to-top" type="button">
@@ -284,9 +283,9 @@ data-aria-dark="Switch to auto color mode">
   </p>
 </div>
       <div class="sy-foot-socials">
-<a href="https://github.com/hasansezertasan/chrome-version" aria-label="GitHub">
-  <iconify-icon icon="simple-icons:github"></iconify-icon>
-</a></div>
+  <a href="https://github.com/hasansezertasan/chrome-version" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
     </div>
   </div>
 </footer>
