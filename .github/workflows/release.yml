@@ -46,12 +46,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version-file: .python-version
       - name: Setup uv
         id: setup-uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39  # v8.2.0
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9  # v9.0.0
         with:
           enable-cache: true
           cache-dependency-glob: |
@@ -63,7 +63,7 @@ jobs:
       - name: Build the Package
         run: uv build --no-sources --quiet
       - name: Upload package
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
         with:
           name: package-distributions
           path: dist/
@@ -81,7 +81,7 @@ jobs:
       url: https://pypi.org/project/chrome-version/${{ needs.release-please.outputs.version }}
     steps:
       - name: Download package
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8
         with:
           name: package-distributions
           path: dist/
@@ -101,25 +101,26 @@ jobs:
         with:
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version-file: .python-version
       - name: Setup uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39  # v8.2.0
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9  # v9.0.0
         with:
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
       - name: Export locked runtime dependencies
-        # SBOM describes what ships: resolved deps for every optional extra
-        # (--all-extras; this project keeps its dependencies under extras, so
-        # without it the SBOM is empty), excluding dev tooling and the project.
+        # SBOM describes what ships: the resolved runtime tree, excluding dev
+        # tooling and the project. Component/settings deps are core
+        # `dependencies`, so a plain export already covers them; `--all-extras`
+        # is retained as a harmless safeguard should a future extra ship deps.
         run: uv export --frozen --all-extras --no-dev --no-emit-project --format requirements.txt --output-file requirements-sbom.txt
       - name: Generate CycloneDX SBOM
         run: uvx --from cyclonedx-bom cyclonedx-py requirements requirements-sbom.txt --output-format JSON --output-file chrome_version-sbom.cdx.json
       - name: Upload SBOM
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
         with:
           name: chrome_version-sbom
           path: chrome_version-sbom.cdx.json
@@ -133,14 +134,14 @@ jobs:
       contents: write  # IMPORTANT: Mandatory for GitHub Release
     steps:
       - name: Download package
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8
         with:
           name: package-distributions
           path: dist/
       - name: Download SBOM
         # Lands in dist/ so the CycloneDX SBOM is attached to the release
         # alongside the distributions by the upload step below.
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8
         with:
           name: chrome_version-sbom
           path: dist/
@@ -170,6 +171,17 @@ jobs:
       actions: write  # IMPORTANT: Mandatory to re-dispatch this workflow
     steps:
       - name: Publish the draft release
+        # KNOWN COSMETIC LIMITATION (accepted, see ADR-002): while the release is
+        # a draft it has no public tag page, so its URL is a transient
+        # `/releases/tag/untagged-<hash>` slug. release-please writes its
+        # "🤖 Created releases:" comment on the merged release PR once, at
+        # draft-creation time, capturing that slug — and never rewrites it. When
+        # this step un-drafts the release GitHub moves it to
+        # `/releases/tag/<TAG_NAME>` and the `untagged-…` link 404s. This is a
+        # dead link on an already-merged PR, not a broken release: the release,
+        # its tag, artifacts, and SBOM are all correct. Left as-is on purpose —
+        # `draft: false` would fix the link but reintroduce a window where a
+        # public release exists with no artifacts/SBOM attached (a worse trade).
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
@@ -228,12 +240,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version-file: .python-version
       - name: Setup uv
         id: setup-uv
-        uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39  # v8.2.0
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9  # v9.0.0
         with:
           enable-cache: true
           cache-dependency-glob: |

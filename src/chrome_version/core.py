@@ -44,8 +44,7 @@ def extract_version_registry(output: str) -> str | None:
     except (TypeError, ValueError):
         # Gracefully handle unexpected input types or missing key
         return None
-    else:
-        return None
+    return None
 
 
 def extract_version_folder() -> str | None:
