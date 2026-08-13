@@ -174,9 +174,7 @@ Debug in VS Code using the launch configurations shipped in `.vscode/launch.json
 
 - **Current File**: Debug the currently open Python file.
 - **Tests**: Debug pytest runs.
-- **Attach**: Attach to a running process (e.g., web app with debugpy).
-- **Web App/CLI/TUI/GUI**: Debug specific entry points (if enabled).
-- **With Profiling**: Debug while profiling with scalene (if profiling enabled).
+- **Attach**: Attach to a running process started with debugpy.
 
 Select a configuration from the Run and Debug panel in VS Code.
 
