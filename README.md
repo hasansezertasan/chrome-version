@@ -9,6 +9,11 @@
 [![Downloads](https://pepy.tech/badge/chrome-version)](https://pepy.tech/project/chrome-version)
 [![Downloads/Month](https://pepy.tech/badge/chrome-version/month)](https://pepy.tech/project/chrome-version)
 [![Downloads/Week](https://pepy.tech/badge/chrome-version/week)](https://pepy.tech/project/chrome-version)
+<!-- prettier-ignore-start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/github/all-contributors/hasansezertasan/chrome-version?color=ee8449&style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
 
 Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection, does not require Selenium.
 
@@ -24,6 +29,7 @@ Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using
 - [Author](#author)
 - [Disclaimer](#disclaimer)
 - [License](#license)
+- [Contributors](#contributors)
 
 ## Installation
 
@@ -105,6 +111,18 @@ This package provides a CLI wrapper for the original project. All credit reserve
 ## License
 
 `chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)). This project follows the [all-contributors](https://allcontributors.org/) specification — contributions of any kind welcome! Add a contributor with the [bot](https://allcontributors.org/docs/en/bot/usage) (`@all-contributors please add @user for code`) or the [CLI](https://allcontributors.org/docs/en/cli/usage).
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- Links -->
 [undetected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver

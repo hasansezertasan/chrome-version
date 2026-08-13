@@ -17,6 +17,11 @@ python = "{{ get_env(name='PYTHON_VERSION', default='3.10') }}"
 # gitignore-check task and the gitignore-drift.yml workflow. 0.4.0+ ships the
 # `--eol` policy the block was sealed with.
 "pipx:cobo" = "0.4.0"
+# all-contributors is a JS CLI delivered via mise's npm backend, so its version
+# is pinned here (Renovate-tracked) and invoked as `mise exec -- all-contributors`
+# by the all-contributors.yml workflow — mirroring ghalint above. mise installs it
+# without node, but running it needs node on PATH (present on CI runners).
+"npm:all-contributors-cli" = "6.26.1"
 
 [tasks.install]
 description = "Install dependencies"

@@ -8,7 +8,7 @@ author_full_name: Hasan Sezer Taşan
 author_given_names: Hasan Sezer
 github_repo_name: chrome_version
 github_user: hasansezertasan
-include_all_contributors: false
+include_all_contributors: true
 include_c_extensions: false
 include_cli: false
 include_compiler: false
@@ -23,7 +23,7 @@ include_postgres: false
 include_profiling: false
 include_pydantic_settings: false
 include_redis: false
-include_repo_settings: false
+include_repo_settings: true
 include_sonarcloud: false
 include_sourcery: false
 include_tui: false
@@ -32,5 +32,6 @@ include_web: false
 include_worker: false
 package_keywords: google chrome version, chrome, google, version
 preset: library
+repository_topics: chrome, chrome-version, cli, python
 short_description: Detect the version of Chrome installed on Windows, Linux, Mac.
     Cross-platform using Python, native OS detection.

@@ -418,6 +418,49 @@ gh api -X PATCH repos/hasansezertasan/chrome-version -F has_discussions=true
 
 (UI: **Settings → General → Features** — tick **Discussions**.)
 
+### Optional third-party integrations
+
+These are enabled in this project's Copier answers and each needs a one-time
+external setup. Until set up, they are inert — CI stays green.
+
+**all-contributors.** `.all-contributorsrc` and the README **Contributors**
+section follow the [all-contributors](https://allcontributors.org/)
+specification. The bundled `all-contributors.yml` workflow regenerates the README
+table from `.all-contributorsrc` (on demand via _Actions → All Contributors → Run
+workflow_, and automatically when `.all-contributorsrc` changes on the default
+branch) and opens a PR with the result — this reuses the same _Allow GitHub
+Actions to create and approve pull requests_ setting release-please needs (step
+3 above), so no extra setup. To add people, either edit `.all-contributorsrc`
+(or run the [CLI](https://allcontributors.org/docs/en/cli/usage), which is pinned
+in `mise.toml`: `mise exec -- all-contributors add <user> <contributions>`) and
+let the workflow regenerate, or install the
+[bot](https://allcontributors.org/docs/en/bot/usage) for
+`@all-contributors please add @user for code` comments.
+
+**Repository settings ("Settings" App).** `.github/settings.yml` declares this
+repository's description, homepage, and (when the `repository_topics` template
+answer is set) topics. It is applied by the
+[Settings GitHub App](https://github.com/apps/settings) on every push to the
+default branch — install it once on this repository (or your account) from the
+[App page](https://github.com/apps/settings). Nothing syncs until it is
+installed.
+
+> [!CAUTION]
+> The Settings App **escalates anyone with push access to admin**: a merge to
+> the default branch syncs whatever is in `settings.yml`. Mitigate this with
+> CODEOWNERS — this project already makes `@hasansezertasan` the code owner of
+> every file (`.github/CODEOWNERS`), so enabling branch protection's **Require
+> review from Code Owners** on the default branch means a `settings.yml` change
+> cannot merge without your review. Note that with the shipped `* @hasansezertasan`
+> ownership this requires code-owner review for _all_ files (the whole branch);
+> to scope the requirement to just `settings.yml`, narrow `.github/CODEOWNERS`
+> to `/.github/settings.yml @hasansezertasan`.
+
+The "Include in the home page" activity toggles (Releases / Packages /
+Deployments in the About sidebar) are **not** settable through any GitHub API,
+so neither this App nor any workflow can manage them — set those in the web UI.
+Labels are managed separately by `.github/labels.yml`, not here.
+
 ## Join The Project Team
 
 Interested in helping maintain chrome-version? Open a
