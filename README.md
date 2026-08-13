@@ -9,6 +9,11 @@
 [![Downloads](https://pepy.tech/badge/chrome-version)](https://pepy.tech/project/chrome-version)
 [![Downloads/Month](https://pepy.tech/badge/chrome-version/month)](https://pepy.tech/project/chrome-version)
 [![Downloads/Week](https://pepy.tech/badge/chrome-version/week)](https://pepy.tech/project/chrome-version)
+<!-- prettier-ignore-start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/github/all-contributors/hasansezertasan/chrome-version?color=ee8449&style=flat-square)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
 
 Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using Python, native OS detection, does not require Selenium.
 
@@ -24,6 +29,7 @@ Get the version of Chrome installed on Windows, Linux, Mac. Cross-platform using
 - [Author](#author)
 - [Disclaimer](#disclaimer)
 - [License](#license)
+- [Contributors](#contributors)
 
 ## Installation
 
@@ -37,6 +43,7 @@ Module:
 
 ```python
 import chrome_version
+
 print(chrome_version.get_chrome_version())
 # '103.0.5060.114'
 ```
@@ -84,57 +91,11 @@ One other thing is that it's educational: A simple module is a good practice for
 - CLI
 - Module
 
-<!-- xc-heading -->
-## Development
+## Development :toolbox:
 
-Clone the repository and cd into the project directory:
-
-```sh
-git clone https://github.com/hasansezertasan/hwid
-cd hwid
-```
-
-The commands below can also be executed using the [xc task runner](https://xcfile.dev/), which combines the usage instructions with the actual commands. Simply run `xc`, it will popup an interactive menu with all available tasks.
-
-### `pre-commit`
-
-Run the pre-commit hooks:
-
-```sh
-uvx pre-commit run --all-files --hook-stage manual --show-diff-on-failure
-```
-
-### `checks`
-
-Run all checks to ensure code quality:
-
-```sh
-uvx "validate-pyproject[all]" pyproject.toml
-uvx typos
-uvx vulture src
-uvx ruff check
-uvx taplo lint pyproject.toml
-uvx ruff format
-uvx taplo format pyproject.toml
-uvx mypy src
-uvx mypy --install-types --non-interactive src/chrome_version
-```
-
-### `docs:serve`
-
-Serve the documentation locally:
-
-```sh
-uvx --with-requirements requirements.docs.txt --reinstall mkdocs serve
-```
-
-### `docs:build`
-
-Build the documentation locally:
-
-```sh
-uvx --with-requirements requirements.docs.txt --reinstall mkdocs build
-```
+See the [Contributing Guidelines](./.github/CONTRIBUTING.md#your-first-code-contribution)
+for local setup, the common development tasks (exposed via [mise](https://mise.jdx.dev)),
+building and previewing the documentation, and the VS Code debugging configurations.
 
 ## Author
 
@@ -150,6 +111,18 @@ This package provides a CLI wrapper for the original project. All credit reserve
 ## License
 
 `chrome-version` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)). This project follows the [all-contributors](https://allcontributors.org/) specification — contributions of any kind welcome! Add a contributor with the [bot](https://allcontributors.org/docs/en/bot/usage) (`@all-contributors please add @user for code`) or the [CLI](https://allcontributors.org/docs/en/cli/usage).
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- Links -->
 [undetected-chromedriver]: https://github.com/ultrafunkamsterdam/undetected-chromedriver

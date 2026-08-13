@@ -1,0 +1,28 @@
+{
+  "projectName": "chrome-version",
+  "projectOwner": "hasansezertasan",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "hasansezertasan",
+      "name": "Hasan Sezer Ta\u015fan",
+      "avatar_url": "https://avatars.githubusercontent.com/hasansezertasan",
+      "profile": "https://github.com/hasansezertasan",
+      "contributions": [
+        "maintenance",
+        "code",
+        "doc",
+        "test",
+        "ideas"
+      ]
+    }
+  ]
+}
