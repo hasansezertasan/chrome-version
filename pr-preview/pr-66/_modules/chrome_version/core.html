@@ -246,13 +246,19 @@ data-aria-dark="Switch to auto color mode">
 </span><span data-line="124">        <span class="c1"># install_path is one of the hardcoded literals assigned above and the</span>
 </span><span data-line="125">        <span class="c1"># argv (list) form is used without shell=True, so there is no injection</span>
 </span><span data-line="126">        <span class="c1"># surface; the trailing directive suppresses the subprocess audit advisory.</span>
-</span><span data-line="127">        <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>  <span class="c1"># nosemgrep</span>
-</span><span data-line="128">            <span class="p">[</span><span class="n">install_path</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span>
-</span><span data-line="129">        <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span data-line="130">        <span class="n">match</span><span class="p">:</span> <span class="n">Match</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Google Chrome ([\d\.]+)&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
-</span><span data-line="131">        <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="kc">None</span>
-</span><span data-line="132">
-</span><span data-line="133">    <span class="k">return</span> <span class="n">version</span></div>
+</span><span data-line="127">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="128">            <span class="n">output</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>  <span class="c1"># nosemgrep</span>
+</span><span data-line="129">                <span class="p">[</span><span class="n">install_path</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">],</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span>
+</span><span data-line="130">            <span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span data-line="131">        <span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">):</span>
+</span><span data-line="132">            <span class="c1"># Chrome is not installed at the expected path (missing binary) or the</span>
+</span><span data-line="133">            <span class="c1"># binary exited non-zero; report &quot;not detected&quot; per the documented</span>
+</span><span data-line="134">            <span class="c1"># ``str | None`` contract instead of propagating the OS error.</span>
+</span><span data-line="135">            <span class="k">return</span> <span class="kc">None</span>
+</span><span data-line="136">        <span class="n">match</span><span class="p">:</span> <span class="n">Match</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Google Chrome ([\d\.]+)&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+</span><span data-line="137">        <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="kc">None</span>
+</span><span data-line="138">
+</span><span data-line="139">    <span class="k">return</span> <span class="n">version</span></div>
 
 </span></pre></div>
         </article><button class="back-to-top" type="button">
