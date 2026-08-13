@@ -7,7 +7,7 @@ tooling in CI or automation.
 ## Run
 
 ```sh
-python examples/advanced/main.py
+uv run --locked python examples/advanced/main.py
 echo "exit code: $?"
 ```
 

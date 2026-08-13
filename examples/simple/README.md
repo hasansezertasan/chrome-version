@@ -5,7 +5,7 @@ Detect the installed Google Chrome version and print it.
 ## Run
 
 ```sh
-python examples/simple/main.py
+uv run --locked python examples/simple/main.py
 ```
 
 ## Expected output

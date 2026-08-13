@@ -124,9 +124,15 @@ def get_chrome_version() -> str | None:
         # install_path is one of the hardcoded literals assigned above and the
         # argv (list) form is used without shell=True, so there is no injection
         # surface; the trailing directive suppresses the subprocess audit advisory.
-        output = subprocess.check_output(  # nosemgrep
-            [install_path, "--version"], text=True, stderr=subprocess.DEVNULL
-        ).strip()
+        try:
+            output = subprocess.check_output(  # nosemgrep
+                [install_path, "--version"], text=True, stderr=subprocess.DEVNULL
+            ).strip()
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            # Chrome is not installed at the expected path (missing binary) or the
+            # binary exited non-zero; report "not detected" per the documented
+            # ``str | None`` contract instead of propagating the OS error.
+            return None
         match: Match[str] | None = re.search(r"Google Chrome ([\d\.]+)", output)
         version = match.group(1) if match else None
 

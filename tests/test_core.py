@@ -109,6 +109,16 @@ def test_get_chrome_version_binary_unparsable(mocker: MockerFixture) -> None:
     assert core.get_chrome_version() is None
 
 
+def test_get_chrome_version_binary_missing(mocker: MockerFixture) -> None:
+    """A missing Chrome binary yields ``None`` instead of raising."""
+    mocker.patch("chrome_version.core.platform", "linux")
+    mocker.patch(
+        "chrome_version.core.subprocess.check_output", side_effect=FileNotFoundError
+    )
+
+    assert core.get_chrome_version() is None
+
+
 def test_get_chrome_version_windows_registry(mocker: MockerFixture) -> None:
     """On Windows the version is read from the registry when available."""
     mocker.patch("chrome_version.core.platform", "win32")
