@@ -58,7 +58,7 @@ source = "https://github.com/hasansezertasan/chrome-version.git"
 [dependency-groups]
 dev = [
   "chrome_version[all]",
-  "tox==4.60.0",
+  "tox==4.60.1",
   "tox-uv==1.36.0",
   "debugpy==1.8.21",
   { include-group = "style" },
