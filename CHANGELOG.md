@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog], and this project adheres to [Semantic Versioning].
 
+## [0.5.0](https://github.com/hasansezertasan/chrome-version/compare/0.4.0...v0.5.0) (2026-09-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* adopt copier-pyproject template for project tooling ([#66](https://github.com/hasansezertasan/chrome-version/issues/66))
+
+### 🚀 Features
+
+* adopt copier-pyproject template for project tooling ([#66](https://github.com/hasansezertasan/chrome-version/issues/66)) ([b6c84ed](https://github.com/hasansezertasan/chrome-version/commit/b6c84edd043a47a5affef7e1c4270a57224f11e2))
+
+
+### 🐛 Bug Fixes
+
+* **typing:** resolve mypy no-redef and missing _version stub errors ([#55](https://github.com/hasansezertasan/chrome-version/issues/55)) ([ed3ecc9](https://github.com/hasansezertasan/chrome-version/commit/ed3ecc92b9fa38920745c991d3704861e280c2b9))
+
+
+### ♻️ Refactoring
+
+* **overall:** refactor code structure for improved readability and maintainability ([#42](https://github.com/hasansezertasan/chrome-version/issues/42)) ([ab94391](https://github.com/hasansezertasan/chrome-version/commit/ab943915c502b336528de9a62c03e57205734932))
+
 ## [0.4.0] - 2025-08-09
 
 ### 🚀 Features
