@@ -170,7 +170,7 @@ hooks = [{ id = "yamllint", args = ["-c", ".github/yamllint.yaml"] }]
 
 [[repos]]
 repo = "https://github.com/DavidAnson/markdownlint-cli2"
-rev = "v0.23.2"
+rev = "v0.23.3"
 hooks = [{ id = "markdownlint-cli2" }]
 
 # shellcheck lints standalone shell scripts a project adds later (workflow
