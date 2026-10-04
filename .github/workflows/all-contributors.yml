@@ -34,7 +34,7 @@ jobs:
       - name: Install mise tools
         # all-contributors-cli is pinned in mise.toml (npm backend, Renovate-tracked)
         # and run via `mise exec`, mirroring how the ghalint hook is invoked.
-        uses: jdx/mise-action@94c60b39bc2d90ab2f9bab27f38d3cc4812c1834  # v5.1.0
+        uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca  # v5.1.1
       - name: Regenerate the contributors table
         # Node (needed to run the CLI) is preinstalled on the runner.
         run: mise exec -- all-contributors generate
