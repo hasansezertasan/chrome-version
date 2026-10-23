@@ -5,12 +5,12 @@ See https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 # -- Project information -----------------------------------------------------
 project = "chrome-version"
 author = "Hasan Sezer Taşan"
-copyright = f"{datetime.now(tz=timezone.utc):%Y}, Hasan Sezer Taşan"  # noqa: A001
+copyright = f"{datetime.now(tz=UTC):%Y}, Hasan Sezer Taşan"  # noqa: A001
 
 # -- General configuration ---------------------------------------------------
 extensions = [
@@ -49,9 +49,9 @@ napoleon_numpy_docstring = False
 
 # -- auto-pytabs -------------------------------------------------------------
 # Keep the version tabs in sync with this project's supported Python range
-# (requires-python >= 3.10, classifiers/CI up to 3.14). auto-pytabs otherwise
+# (requires-python >= 3.11, classifiers/CI up to 3.14). auto-pytabs otherwise
 # defaults to (3, 7), which would mislabel the rendered examples.
-auto_pytabs_min_version = (3, 10)
+auto_pytabs_min_version = (3, 11)
 auto_pytabs_max_version = (3, 14)
 
 # -- Intersphinx -------------------------------------------------------------

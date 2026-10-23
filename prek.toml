@@ -6,7 +6,7 @@
 # .github/renovate.json). There is no pre-commit.ci integration and no sync-with-uv
 # hook — Renovate owns every `rev` bump, including the tools shared with the uv
 # `style` dependency group.
-default_language_version.python = "python3.10"
+default_language_version.python = "python3.11"
 default_stages = ["pre-commit", "pre-push"]
 exclude = '''(?x)^(
     # Editor/debugger JSON configs that carry comments or trailing commas
