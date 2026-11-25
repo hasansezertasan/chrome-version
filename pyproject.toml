@@ -55,8 +55,8 @@ source = "https://github.com/hasansezertasan/chrome-version.git"
 [dependency-groups]
 dev = [
   "chrome_version[all]",
-  "tox==4.67.1",
-  "tox-uv==1.37.0",
+  "tox==4.67.16",
+  "tox-uv==1.37.9",
   "debugpy==1.8.22",
   { include-group = "style" },
   { include-group = "test" },
@@ -78,7 +78,7 @@ style = [
 ]
 test = [
   "coverage-enable-subprocess==1.0",
-  "coverage[toml]==7.17.0",
+  "coverage[toml]==7.17.5",
   "pytest-mock==3.17.0",
   "pytest-rerunfailures==16.7",
   "pytest-xdist[psutil]==3.8.0",
@@ -93,7 +93,7 @@ docs = [
   "shibuya==2026.7.12",
   "sphinx-autobuild==2025.8.25",
   "sphinx-copybutton==0.5.2",
-  "sphinx-design==0.7.0",
+  "sphinx-design==0.8.0",
   "sphinx-togglebutton==0.4.5",
   "sphinx-paramlinks==0.6.0",
   "auto-pytabs[sphinx]==0.5.0",
